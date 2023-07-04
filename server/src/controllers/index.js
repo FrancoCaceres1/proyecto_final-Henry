@@ -4,13 +4,15 @@ const { Op } = require("sequelize");
 
 const getAllCountries = async () => {
   const dbCountry = await Country.findAll({
-    include: {
-      model: Activity,
-      attributes: ["name", "difficulty", "duration", "season"],
-      through: {
-        attributes: [],
+    include: [
+      {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: {
+          attributes: [],
+        },
       },
-    },
+    ],
   });
   return dbCountry;
 };
@@ -18,13 +20,15 @@ const getAllCountries = async () => {
 const getCountryById = async (id) => {
   const countryFilter = await Country.findAll({
     where: { id },
-    include: {
-      model: Activity,
-      attributes: ["name", "difficulty", "duration", "season"],
-      through: {
-        attributes: [],
+    include: [
+      {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: {
+          attributes: [],
+        },
       },
-    },
+    ],
   });
 
   return countryFilter;
@@ -47,7 +51,6 @@ const postActivities = async (name, difficulty, duration, season, pais) => {
 
   for (let i = 0; i < pais.length; i++) {
     const findCountry = await Country.findAll({ where: { name: pais[i] } });
-
     await newActivity.addCountries(findCountry);
   }
 

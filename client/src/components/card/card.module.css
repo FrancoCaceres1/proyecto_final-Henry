@@ -1,0 +1,78 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../../public/portal.png");
+  background-position: center;
+  width: auto;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+}
+
+.cardContainer:hover {
+  transform: scale(1.05);
+}
+
+.atributes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  font-size: small;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.closeButton {
+  opacity: 0.7;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.closeButton:hover {
+  background-color: red;
+  color: white;
+}
+
+.imageContainer {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.name {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out; /* Animation to fade in */
+  -ms-transition: all 0.3s ease-in-out; /* Animation to fade in */
+  transition: all 0.3s ease-in-out; /* Animation to fade in */
+}
+
+.characterImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: all 0.3s ease-in-out; /* Animation to fade in */
+  -ms-transition: all 0.3s ease-in-out; /* Animation to fade in */
+  transition: all 0.3s ease-in-out;
+}
+
+.imageContainer:hover .characterImage {
+  opacity: 0.4;
+}
+
+.imageContainer:hover .name {
+  opacity: 1;
+}

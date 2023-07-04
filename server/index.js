@@ -5,9 +5,9 @@ const PORT = 3001;
 
 conn
   .sync({ force: true })
-  .then(() => {
+  .then(async () => {
     server.listen(PORT, async () => {
-      const dbCountries = Country.findAll();
+      const dbCountries = await Country.findAll();
 
       if (!dbCountries.length) {
         const urlApi = await axios.get("http://localhost:5000/countries");
