@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
   return (
     <div className={style.landingContainer}>
+      <h1>Bienvenidos</h1>
       <div className="background-image"></div>
       <Link to="/home">
         <button>Ingresar</button>

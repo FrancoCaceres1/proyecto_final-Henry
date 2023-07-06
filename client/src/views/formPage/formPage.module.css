@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap");
+
+.container {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  font-size: 20px;
+  border-radius: 10px;
+  width: 500px;
+  background-color: #0c134f;
+}
+
+.line {
+  margin: 15px;
+  color: white;
+}
+
+.error {
+  color: red;
+}
+
+.setcountry {
+  font-family: "Inconsolata", monospace;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: black;
+  color: yellow;
+}
+
+.countries {
+  display: flex;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin: 10px 0;
+}
+
+.select {
+  font-family: "Inconsolata", monospace;
+  font-size: 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 15px;
+  background-color: rgb(46, 40, 40);
+  color: antiquewhite;
+  padding: 3px;
+}
+
+.button {
+  font-family: "Bruno Ace", cursive;
+  background-image: url(../../../public/img/photo-1475274047050-1d0c0975c63e.jfif);
+  background-size: cover;
+  color: #ffea20;
+  border-radius: 5px;
+  margin: 20px;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border: 1px solid red;
+}
+.button:active {
+  transform: scale(1.1);
+  border: 2px #f6ffa6 solid;
+}

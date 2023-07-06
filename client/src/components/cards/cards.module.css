@@ -1,15 +1,31 @@
-.cardList {
-  max-width: 80vw;
-  margin-bottom: 30px;
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-gap: 70px;
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media screen and (min-width: 1200px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-  }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+.title {
+  margin: 2px 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+}
+.title1 {
+  color: blue;
+  margin: 2px 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+}
+
+.img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.img:hover {
+  transform: scale(1.2);
+}
+
+.card {
+  width: 200px;
+  height: auto;
+  background-color: rgb(200, 161, 134);
+  border-radius: 5px;
+  padding: 15px;
 }

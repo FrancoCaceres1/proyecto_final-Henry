@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap");
+
+.select {
+  font-family: "Inconsolata", monospace;
+  font-size: 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px 25px 0 25px;
+  background-color: rgb(46, 40, 40);
+  color: antiquewhite;
+  padding: 3px;
+}
