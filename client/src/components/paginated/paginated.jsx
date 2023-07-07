@@ -1,16 +1,12 @@
 import style from "./paginated.module.css";
 
 const Paginated = ({
-  countryPerPage,
-  allCountries,
   paginated,
-  currentPage
+  currentPage,
 }) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(allCountries.length / countryPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25,];
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {

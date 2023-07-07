@@ -52,7 +52,6 @@ const FormPage = () => {
     event.preventDefault();
     if (Object.keys(errors).length === 0) {
       dispatch(actions.addActivity(form));
-      console.log(form);
       setForm({
         name: "",
         difficulty: "",

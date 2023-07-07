@@ -1,9 +1,12 @@
-const initialState = {
+export const initialState = {
   allCountries: [],
   allCountriesFilter: [],
   countryDetail: [],
   allActivities: [],
   allActivitiesFilter: [],
+  selectedContinent: "All",
+  selectedActivity: "All",
+  searchError: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -55,6 +58,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         allCountriesFilter: action.payload,
         allActivitiesFilter: [],
+        searchError: null,
+      };
+
+    case "SEARCH_ERROR":
+      return {
+        ...state,
+        searchError: action.payload,
       };
 
     case "FILTER_BY_CONTINENT": {
@@ -73,15 +83,25 @@ const reducer = (state = initialState, action) => {
     }
 
     case "FILTER_ACTIVITIES": {
-      const allActivitiesFiltered =
-        action.payload === "All"
-          ? state.allActivities
-          : state.allActivities.filter((coun) => coun.name === action.payload);
+      const allCountriesFiltered = state.allCountries?.filter((country) => {
+        const countryActivities =
+          country.Activities && country.Activities.length > 0
+            ? country.Activities.map((activity) => activity.name)
+            : undefined;
+        const selectedActivity = action.payload;
+        return (
+          selectedActivity === "All" ||
+          countryActivities?.includes(selectedActivity)
+        );
+      });
+      const filteredActivities = state.allActivities?.filter((activity) => {
+        return action.payload === "All" || activity.name === action.payload;
+      });
 
       return {
         ...state,
-        allCountriesFilter: [],
-        allActivitiesFilter: allActivitiesFiltered,
+        allCountriesFilter: allCountriesFiltered || [],
+        allActivitiesFilter: filteredActivities || [],
       };
     }
 
@@ -131,6 +151,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case "FETCH_ACTIVITIES": {
+      console.log(action.payload);
       return {
         ...state,
         allActivities: action.payload,
@@ -149,6 +170,11 @@ const reducer = (state = initialState, action) => {
         allActivitiesFilter: [],
       };
     }
+
+    case "RESET_FILTERS":
+      return {
+        ...initialState,
+      };
 
     default:
       return state;

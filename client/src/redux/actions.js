@@ -75,7 +75,11 @@ export const onSearch = (name) => {
         });
       }
     } catch (error) {
-      alert("Error: " + error.response.data.error);
+      const errorMessage = "Error: ese pais no existe";
+      dispatch({
+        type: "SEARCH_ERROR",
+        payload: errorMessage,
+      });
     }
   };
 };
@@ -146,5 +150,11 @@ export const fetchActivities = () => {
     } catch (error) {
       alert("Error: " + error.response.data.error);
     }
+  };
+};
+
+export const resetFilters = () => {
+  return {
+    type: "RESET_FILTERS",
   };
 };

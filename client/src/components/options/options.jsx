@@ -1,25 +1,66 @@
 import * as actions from "../../redux/actions";
+import { initialState } from "../../redux/reducers";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import style from "./options.module.css";
 
 const Options = () => {
   const dispatch = useDispatch();
+  const [resetFilters, setResetFilters] = useState(false);
+
+  const [selectedContinent, setSelectedContinent] = useState(
+    initialState.selectedContinent
+  );
+  const [selectedActivity, setSelectedActivity] = useState(
+    initialState.selectedActivity
+  );
+  const [selectedOrder, setSelectedOrder] = useState("Any"); // Ordenamiento predeterminado en descendente
+
+  useEffect(() => {
+    setSelectedContinent(initialState.selectedContinent);
+    setSelectedActivity(initialState.selectedActivity);
+
+    dispatch(actions.filterCountryByContinent(initialState.selectedContinent));
+    dispatch(actions.filterActivities(initialState.selectedActivity));
+  }, [dispatch]);
 
   const handleFilterContinent = (event) => {
+    setSelectedContinent(event.target.value);
     dispatch(actions.filterCountryByContinent(event.target.value));
   };
+
   const handleFilterActivities = (event) => {
+    setSelectedActivity(event.target.value);
     dispatch(actions.filterActivities(event.target.value));
   };
+
   const handleFilterOrder = (event) => {
+    setSelectedOrder(event.target.value);
     dispatch(actions.filterOrder(event.target.value));
   };
+
+  const handleResetFilters = () => {
+    dispatch(actions.getCountries());
+    setSelectedContinent(initialState.selectedContinent);
+    setSelectedActivity(initialState.selectedActivity);
+    setSelectedOrder("Any"); // Restablecer el ordenamiento a descendente
+    dispatch(actions.filterCountryByContinent(initialState.selectedContinent));
+    dispatch(actions.filterActivities(initialState.selectedActivity));
+  };
+
+  useEffect(() => {
+    if (resetFilters) {
+      dispatch(actions.resetFilters());
+      setResetFilters(false);
+    }
+  }, [resetFilters, dispatch]);
 
   return (
     <div>
       <div>
         <select
-          onChange={(event) => handleFilterContinent(event)}
+          value={selectedContinent}
+          onChange={handleFilterContinent}
           className={style.select}
         >
           <option value="All">Todos los continentes</option>
@@ -32,7 +73,8 @@ const Options = () => {
           <option value="Oceania">Oceanía</option>
         </select>
         <select
-          onChange={(event) => handleFilterActivities(event)}
+          value={selectedActivity}
+          onChange={handleFilterActivities}
           className={style.select}
         >
           <option value="All">Todas las actividades</option>
@@ -47,12 +89,16 @@ const Options = () => {
           <option value="Free Choice">Free Choice</option>
         </select>
         <select
-          onChange={(event) => handleFilterOrder(event)}
+          value={selectedOrder}
+          onChange={handleFilterOrder}
           className={style.select}
         >
-          <option value="" disabled selected>Ordenar por:</option>
-          <option value="A">Ascendente País</option>
-          <option value="D">Descendente País</option>
+          <option value="" disabled defaultValue>
+            Ordenar por:
+          </option>
+          <option value="Any">Cualquiera</option>
+          <option value="A">Descendente País</option>
+          <option value="D">Ascendente País</option>
           <option value="P">Ascendente Población</option>
           <option value="G">Descendente Población</option>
         </select>
@@ -62,6 +108,7 @@ const Options = () => {
                 actions
                 reducer */}
       </div>
+      <button onClick={handleResetFilters}>Restablecer filtros</button>
     </div>
   );
 };
