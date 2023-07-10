@@ -173,7 +173,8 @@ const reducer = (state = initialState, action) => {
 
     case "RESET_FILTERS":
       return {
-        ...initialState,
+        ...state,
+        allCountriesFilter: state.allCountries,
       };
 
     default:

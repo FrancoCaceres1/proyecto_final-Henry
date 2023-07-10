@@ -73,6 +73,11 @@ export const onSearch = (name) => {
           type: "SEARCH_COUNTRIES",
           payload: data,
         });
+      } else {
+        return dispatch({
+          type: "SEARCH_COUNTRIES",
+          payload: [], 
+        });
       }
     } catch (error) {
       const errorMessage = "Error: ese pais no existe";
@@ -91,10 +96,7 @@ export const deleteActivities = (id) => {
         `http://localhost:3001/activities/${id}`
       );
 
-      console.log(data);
-
       if (data === 1) {
-        console.log("sdsdf", id);
         return dispatch({
           type: "DELETE_ACTIVITIES",
           payload: id,

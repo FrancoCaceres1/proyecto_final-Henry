@@ -24,6 +24,7 @@
 }
 
 .setcountry {
+  position: relative;
   font-family: "Inconsolata", monospace;
   font-size: 15px;
   padding: 5px;
@@ -34,6 +35,7 @@
 }
 
 .countries {
+  position: relative;
   display: flex;
   border-radius: 5px;
   padding: 5px 0;
@@ -69,4 +71,43 @@
 .button:active {
   transform: scale(1.1);
   border: 2px #f6ffa6 solid;
+}
+
+.searchResults {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.searchResults li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.searchResults li:hover {
+  background-color: #f0f0f0;
+}
+
+.setcountry::before {
+  content: "X";
+  font-size: 12px;
+  color: white;
+  background-color: red;
+  padding: 2px 4px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.countries:hover .setcountry::before {
+  opacity: 1;
 }

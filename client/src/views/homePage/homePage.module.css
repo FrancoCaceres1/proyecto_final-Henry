@@ -1,3 +1,18 @@
+.header {
+  margin-left: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.logo {
+  font-size: 24px;
+  color: black;
+  font-weight: bold;
+}
+
 .card{
   display: grid;
   grid-template-columns: repeat(5, minmax(190px, 1fr));
@@ -19,4 +34,35 @@
 
 .tarjet{
   margin: auto;
+}
+
+.container {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.sidebarToggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebarToggle:hover {
+  background-color: #ddd;
 }

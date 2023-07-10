@@ -1,0 +1,94 @@
+.sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 24px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 65px;
+  background-color: #f4f4f4;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.toggleButton {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  font-size: 10px;
+  margin-top: 24px;
+  border-radius: 50%;
+  font-weight: bold;
+  background-color: #f4f4f4;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.toggleButton:focus{
+  outline: #414141;
+}
+
+.toggleButton:hover {
+  background-color: #d4d2d2a9;
+}
+
+.toggleButton::before,
+.toggleButton::after,
+.toggleButton span {
+  content: "";
+  position: absolute;
+  margin-top: 21px;
+  left: 13px;
+  width: 50%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: #000000;
+}
+
+.toggleButton::before {
+  top: -6px;
+}
+
+.toggleButton::after {
+  top: 13px;
+}
+
+.toggleButton span {
+  top: 3px;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: -400px;
+  width: 250px;
+  height: 100%;
+  padding: 20px;
+  background-color: #fff;
+  transition: transform 0.5s ease;
+}
+
+.showContent {
+  transform: translateX(400px);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+

@@ -38,7 +38,6 @@ activitiesRouter.get("/", async (req, res) => {
 
 activitiesRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
-
   try {
     if (!id) {
       throw Error(`${id} no existe para eliminar`);

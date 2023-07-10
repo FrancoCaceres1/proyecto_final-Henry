@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../Redux/actions";
 import validation from "./validation";
+import Navbar from "../../components/navbar/navbar"
 import style from "./formPage.module.css";
 
 const FormPage = () => {
   const allCountries = useSelector((state) => state.allCountries);
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const selectRef = useRef(null);
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     name: "",
@@ -20,37 +23,24 @@ const FormPage = () => {
   });
 
   const handleChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+    const { name, value } = event.target;
 
-    if (property === "pais") {
-      setForm({
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  
+    setErrors(
+      validation({
         ...form,
-        pais: [...form.pais, event.target.value],
-      });
-      setErrors(
-        validation({
-          ...form,
-          [property]: value,
-        })
-      );
-    } else {
-      setForm({
-        ...form,
-        [property]: value,
-      });
-      setErrors(
-        validation({
-          ...form,
-          [property]: value,
-        })
-      );
-    }
+        [name]: value,
+      })
+    );
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (Object.keys(errors).length === 0) {
+    if (!errors.pais) {
       dispatch(actions.addActivity(form));
       setForm({
         name: "",
@@ -60,11 +50,33 @@ const FormPage = () => {
         pais: [],
       });
       alert("La actividad se creó con éxito");
-      const selectElement = document.querySelector('select[name="pais"]');
-      selectElement.selectedIndex = 0;
+      selectRef.current.selectedIndex = 0;
     } else {
       alert("Por favor, completa todos los datos");
     }
+  };
+
+  const handleSearchChange = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredResults = allCountries.filter((country) =>
+      country.name.toLowerCase().includes(searchTerm)
+    );
+    setFilteredCountries(filteredResults);
+    setSearchTerm(searchTerm);
+  };
+
+  const handleSearchSubmit = (country) => {
+    const selectedCountry = country.name;
+    setForm((prevForm) => ({
+      ...prevForm,
+      pais: [...prevForm.pais, selectedCountry],
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      pais: "",
+    }));
+    setSearchTerm("");
+    setFilteredCountries([]);
   };
 
   const handleDelete = (element) => {
@@ -76,6 +88,7 @@ const FormPage = () => {
 
   return (
     <div className={style.container}>
+      <div><Navbar/></div>
       <form className={style.form} onSubmit={handleSubmit}>
         <div className={style.line}>
           <label htmlFor="">Nombre: </label>
@@ -158,24 +171,44 @@ const FormPage = () => {
         </div>
         <div className={style.line}>
           <label htmlFor="">País / Países: </label>
-          <select
-            name="pais"
-            className={style.select}
-            onChange={(event) => {
-              handleChange(event);
-            }}
-          >
-            <option value="" defaultValue="">
-              Seleccioná el/los países
-            </option>
-            {allCountries?.map((e) => {
-              return (
-                <option value={e.name} key={e.name}>
-                  {e.name}
-                </option>
-              );
-            })}
-          </select>
+          <div>
+            <input
+              type="text"
+              placeholder="Buscar país"
+              name="pais"
+              value={searchTerm}
+              onChange={(event) => {
+                handleSearchChange(event);
+              }}
+              className={style.searchInput}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  handleSearchSubmit();
+                }
+              }}
+              ref={selectRef}
+            />
+            <button
+              type="button"
+              className={style.searchButton}
+              onClick={() => handleSearchSubmit(filteredCountries[0])}
+              disabled={filteredCountries.length !== 1}
+            >
+              Agregar
+            </button>
+          </div>
+          {filteredCountries.length > 0 && (
+            <ul className={style.searchResults}>
+              {filteredCountries.slice(0, 10).map((country) => (
+                <li
+                  key={country.name}
+                  onClick={() => handleSearchSubmit(country)}
+                >
+                  {country.name}
+                </li>
+              ))}
+            </ul>
+          )}
           {errors.pais && <p className={style.error}>{errors.pais}</p>}
           <div className={style.line}>
             {form.pais?.map((element) => (

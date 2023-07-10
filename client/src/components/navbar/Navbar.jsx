@@ -1,35 +1,33 @@
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import * as actions from "../../Redux/actions";
+import { Link, useLocation } from "react-router-dom";
 import style from "./navbar.module.css";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(actions.getCountries());
-  }, []);
-
-  const handlerClick = (event) => {
-    event.preventDefault();
-    dispatch(actions.getCountries());
-  };
+  const location = useLocation();
+  const isHomePage = location.pathname === "/home";
 
   return (
     <div>
       <Link to="/home">
         <button className={style.button}>HOME</button>
       </Link>
-      <Link to="/activities">
-        <button className={style.button}>ACTIVIDADES</button>
-      </Link>
+      {isHomePage && (
+        <Link to="/activities">
+          <button className={style.button}>ACTIVIDADES</button>
+        </Link>
+      )}
+      {location.pathname === "/activities" && (
+        <Link to="/ver">
+          <button className={style.button}>Ver</button>
+        </Link>
+      )}
+      {location.pathname === "/ver" && (
+        <button className={style.button} onClick={() => window.history.back()}>
+          Back
+        </button>
+      )}
       <Link to="/">
         <button className={style.button}>LOGOUT</button>
       </Link>
-      <button className={style.button} onClick={handlerClick}>
-        Reset Countries
-      </button>
     </div>
   );
 };

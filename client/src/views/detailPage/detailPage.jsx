@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as actions from "./../../redux/actions";
+import Navbar from "../../components/navbar/navbar"
 import style from "./detailPage.module.css";
 
 const DetailPage = () => {
@@ -28,6 +29,9 @@ const DetailPage = () => {
 
   return (
     <div className={style.container}>
+      <div>
+        <Navbar />
+      </div>
       <div className={style.box}>
         <img
           src={countryDetail[0]?.image}

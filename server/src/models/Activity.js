@@ -19,8 +19,7 @@ module.exports = (sequelize) => {
           "Gastronomic Circuit",
           "Rapel",
           "Shopping",
-          "Museum Circuit",
-          "Free Choice"
+          "Museum Circuit"
         ),
         allowNull: false,
       },

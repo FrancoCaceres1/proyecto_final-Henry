@@ -14,7 +14,7 @@ const Options = () => {
   const [selectedActivity, setSelectedActivity] = useState(
     initialState.selectedActivity
   );
-  const [selectedOrder, setSelectedOrder] = useState("Any"); // Ordenamiento predeterminado en descendente
+  const [selectedOrder, setSelectedOrder] = useState("Any");
 
   useEffect(() => {
     setSelectedContinent(initialState.selectedContinent);
@@ -43,7 +43,7 @@ const Options = () => {
     dispatch(actions.getCountries());
     setSelectedContinent(initialState.selectedContinent);
     setSelectedActivity(initialState.selectedActivity);
-    setSelectedOrder("Any"); // Restablecer el ordenamiento a descendente
+    setSelectedOrder("Any");
     dispatch(actions.filterCountryByContinent(initialState.selectedContinent));
     dispatch(actions.filterActivities(initialState.selectedActivity));
   };
@@ -102,13 +102,8 @@ const Options = () => {
           <option value="P">Ascendente Población</option>
           <option value="G">Descendente Población</option>
         </select>
-        {/* hacer estados locales
-                handleChange
-                useEffect
-                actions
-                reducer */}
+        <button onClick={handleResetFilters}>Restablecer filtros</button>
       </div>
-      <button onClick={handleResetFilters}>Restablecer filtros</button>
     </div>
   );
 };
