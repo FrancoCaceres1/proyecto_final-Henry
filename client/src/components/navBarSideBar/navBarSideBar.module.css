@@ -1,13 +1,101 @@
-.homeButton {
-  width: 50px;
-  height: 50px;
+.buttonContainer {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  font-size: 12px;
+}
+
+.buttonContainer a {
+  width: 100%;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeButton {
+  width: 90%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: transparent;
+  gap: 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 .homeButton img {
-  width: 50px;
-  height: 50px;
+  width: 27px;
+  height: 25px;
+}
+
+.homeButton:focus{
+  outline: #414141;
+}
+
+.homeButton:hover {
+  background-color: #e2dfdfa9;
+  border: none;
+}
+
+.activityButton {
+  width: 90%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.activityButton img {
+  width: 25px;
+  height: 30px;
+}
+
+.activityButton:focus{
+  outline: #414141;
+}
+
+.activityButton:hover {
+  background-color: #e2dfdfa9;
+  border: none;
+}
+
+.logoutButton {
+  width: 90%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.logoutButton img {
+  width: 30px;
+  height: 27px;
+  margin-right: 5px;
+}
+
+.logoutButton:focus{
+  outline: #414141;
+}
+
+.logoutButton:hover {
+  background-color: #e2dfdfa9;
+  border: none;
 }

@@ -1,25 +1,25 @@
 .sidebar {
-  position: fixed;
+  position:fixed;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 65px;
+  width: 70px;
   background-color: #f4f4f4;
   transition: transform 0.3s ease;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .toggleButton {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   padding: 10px;
   font-size: 10px;
-  margin-top: 24px;
+  margin-top: 23px;
   border-radius: 50%;
   font-weight: bold;
   background-color: #f4f4f4;
@@ -33,7 +33,7 @@
 }
 
 .toggleButton:hover {
-  background-color: #d4d2d2a9;
+  background-color: #e2dfdfa9;
 }
 
 .toggleButton::before,
@@ -43,32 +43,34 @@
   position: absolute;
   margin-top: 21px;
   left: 13px;
-  width: 50%;
-  height: 2px;
+  width: 20px;
+  height: 0.1em;
   border-radius: 5px;
   background-color: #000000;
 }
 
 .toggleButton::before {
-  top: -6px;
+  top: -5px;
 }
 
 .toggleButton::after {
-  top: 13px;
+  top: 9px;
 }
 
 .toggleButton span {
-  top: 3px;
+  top: 2px;
 }
 
 .content {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 0;
   left: -400px;
   width: 250px;
   height: 100%;
-  padding: 20px;
-  background-color: #fff;
+  background-color: #f4f4f4;
   transition: transform 0.5s ease;
 }
 
@@ -76,19 +78,61 @@
   transform: translateX(400px);
 }
 
-.closeButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  font-size: 18px;
+.closeButtonContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
+  justify-content: start;
+  width: 100%;
+  padding: 10px 0px 10px 10px;
+  gap: 10px;
 }
 
+.closeButtonContainer p {
+  font-size: 20px;
+}
+
+.closeButton {
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  font-size: 10px;
+  border-radius: 50%;
+  font-weight: bold;
+  background-color: #f4f4f4;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.closeButton:focus{
+  outline: #414141;
+}
+
+.closeButton:hover {
+  background-color: #e2dfdfa9;
+}
+
+.closeButton::before,
+.closeButton::after,
+.closeButton span {
+  content: "";
+  position: absolute;
+  margin-top: 21px;
+  left: 13px;
+  width: 20px;
+  height: 0.1em;
+  border-radius: 5px;
+  background-color: #000000;
+}
+
+.closeButton::before {
+  top: -5px;
+}
+
+.closeButton::after {
+  top: 9px;
+}
+
+.closeButton span {
+  top: 2px;
+}

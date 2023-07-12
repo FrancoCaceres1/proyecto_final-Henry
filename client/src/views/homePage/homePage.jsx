@@ -25,7 +25,7 @@ const HomePage = () => {
   };
 
   const handleShowAllCountries = () => {
-    dispatch(actions.resetFilters()); 
+    dispatch(actions.resetFilters());
   };
 
   useEffect(() => {
@@ -39,8 +39,15 @@ const HomePage = () => {
       <div className={style.content}>
         <header className={style.header}>
           <h1 className={style.logo}>Countries.API</h1>
-          <SearchBar/>
-          <button onClick={handleShowAllCountries}>Mostrar todos los países</button>
+          <div className={style.search}>
+            {allCountries.length === 1 && (
+              <button onClick={handleShowAllCountries} className={style.showAllButton}>
+                <img src="../../../public/img/recarga.png" alt="" />
+              </button>
+            )}
+            <SearchBar />
+          </div>
+          <div className={`${style.earth} ${style.animation}`}></div>
         </header>
         <div>
           <Options />

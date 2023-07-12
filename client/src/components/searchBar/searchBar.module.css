@@ -1,59 +1,60 @@
-.search-container {
-  margin-top: 30px;
-  height: 30px;
-  width: 70%;
+.searchContainer {
   display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
-.search-input {
-  width: 30%;
-  padding: 12px 20px;
-  border: solid #39ff14 1px;
-  border-radius: 7px 0px 0px 7px;
+.searchInputContainer {
+  display: flex;
+}
+
+.searchInput {
+  width: 100%;
+  font-size: 15px;
+  padding: 12px 15px;
+  border: 1px solid #808080;
+  border-radius: 10px 0px 0px 10px;
   box-sizing: border-box;
-  box-shadow: inset 0 0 5px #808080;
+  box-shadow: inset 0 0 2px #808080;
 }
 
-.search-icon {
-  background-image: url('./../../assets/lupa.svg');
-  width: 20px;
-  height: 20px;
-  background-size: cover;
+.searchIcon {
+  background-image: url("./../../assets/lupa.svg");
+  width: 80px;
+  background-size: 20px;
   background-position: center;
+  background-repeat: no-repeat;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  border-radius: 0px 10px 10px 0px;
+  background-color: transparent;
+  border: 1px solid #808080;
 }
 
-.search-icon:hover {
-  transform: scale(1.1);
-}
-
-.search-icon-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background-color: black;
-  padding: 10px;
-  border: solid #39ff14 1px;
-  border-radius: 0px 7px 7px 0px;
-}
-
-.search-icon-container:hover {
-  box-shadow: inset 0 0 10px #39ff14;
+.searchIcon:hover {
+  background-color: #e2dfdfa9;
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
 .searchResults {
+  position: absolute;
+  top: 68px;
   list-style: none;
+  font-size: 15px;
   padding: 0;
   margin: 0;
   max-height: 200px;
   overflow-y: auto;
-  border: 1px solid #000000;
+  border: none;
   border-radius: 4px;
+  background-color: #f4f4f4;
+  width: 28.3%;
+  -webkit-box-shadow: 1px 1px 2px 0px rgba(102, 102, 102, 1);
+  -moz-box-shadow: 1px 1px 2px 0px rgba(102, 102, 102, 1);
+  box-shadow: 1px 1px 2px 0px rgba(102, 102, 102, 1);
 }
 
 .searchResults li {
@@ -63,8 +64,7 @@
 }
 
 .searchResults li:hover {
-  background-color: #000000;
-  color: white;
+  background-color: #e2dfdfa9;
 }
 
 .error {

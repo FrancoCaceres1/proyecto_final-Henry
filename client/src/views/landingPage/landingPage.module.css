@@ -1,10 +1,3 @@
-body {
-  background: -webkit-radial-gradient(#346366 5%, #0c3e47 25%, #01242b 80%);
-  color: #eee;
-  font-family: sans-serif;
-  text-align: center;
-}
-
 @font-face {
   font-family: "Retro";
   src: url("../../assets/fonts/Market_Deco.ttf") format("truetype");
@@ -16,6 +9,7 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  background: -webkit-radial-gradient(#346366 5%, #0c3e47 25%, #01242b 80%);
 }
 
 .earth {

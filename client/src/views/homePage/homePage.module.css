@@ -1,16 +1,41 @@
 .header {
-  margin-left: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #f1f1f1;
+  background-color: #f4f4f4;
+}
+
+.earth {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: -20px -20px 0 -10px rgba(0, 0, 0, 0.15) inset,
+    -60px -20px 0 0 rgba(0, 0, 0, 0.1) inset,
+    5px 5px 0 0 rgba(255, 255, 255, 0.2) inset;
+  background: url("../../../public/img/mapa.png") repeat-x;
+  background-size: auto 100%;
+  animation: rotate 15s infinite linear;
+
+}
+
+@keyframes rotate {
+  from {
+    background-position: 0 center;
+  }
+  to {
+    background-position: -495px center;
+  }
 }
 
 .logo {
   font-size: 24px;
   color: black;
   font-weight: bold;
+  line-height: 1.1;
+  position: absolute;
+  left: 1;
 }
 
 .card{
@@ -41,15 +66,8 @@
 }
 
 .content {
+  margin-left: 70px;
   flex-grow: 1;
-}
-
-.sidebar {
-  width: 200px;
-  background-color: #f1f1f1;
-  padding: 20px;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(0);
 }
 
 .sidebarToggle {
@@ -64,5 +82,35 @@
 }
 
 .sidebarToggle:hover {
-  background-color: #ddd;
+  background-color: #e2dfdfa9;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 30%;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.showAllButton {
+  width: 35px;
+  height: 35px;
+  border: none;
+  padding-top: 2px;
+  padding-left: 3px;
+  margin-top: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.showAllButton:hover {
+  background-color: #e2dfdfa9;
+}
+
+.showAllButton img {
+  width: 23px;
+  height: 20px;
 }

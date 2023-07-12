@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "./sideBar.module.css";
-import Navbar from "../navbar/navbar";
 import NavBarSideBar from "../navBarSideBar/navBarSideBar";
 
 const Sidebar = () => {
@@ -24,10 +23,13 @@ const Sidebar = () => {
       >
         {isExpanded && (
           <>
-            <Navbar />
-            <button className={styles.closeButton} onClick={toggleSidebar}>
-              X
-            </button>
+            <div className={styles.closeButtonContainer}>
+              <button className={styles.closeButton} onClick={toggleSidebar}>
+                <span></span>
+              </button>
+              <p>Countries.API</p>
+            </div>
+            <NavBarSideBar className={styles.navBarSideBar} />
           </>
         )}
       </div>
