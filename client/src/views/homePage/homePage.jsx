@@ -24,10 +24,6 @@ const HomePage = () => {
     setCurrentPage(() => pageNumber);
   };
 
-  const handleShowAllCountries = () => {
-    dispatch(actions.resetFilters());
-  };
-
   useEffect(() => {
     dispatch(actions.fetchCountries());
     dispatch(actions.fetchActivities());
@@ -40,11 +36,6 @@ const HomePage = () => {
         <header className={style.header}>
           <h1 className={style.logo}>Countries.API</h1>
           <div className={style.search}>
-            {allCountries.length === 1 && (
-              <button onClick={handleShowAllCountries} className={style.showAllButton}>
-                <img src="../../../public/img/recarga.png" alt="" />
-              </button>
-            )}
             <SearchBar />
           </div>
           <div className={`${style.earth} ${style.animation}`}></div>
@@ -52,6 +43,17 @@ const HomePage = () => {
         <div>
           <Options />
         </div>
+        {allCountries.length > 10 && (
+          <div>
+            <Paginated
+              countryPerPage={10}
+              allCountries={allCountries.length}
+              paginated={paginated}
+              currentPage={currentPage}
+              allActivities={allActivities.length}
+            />
+          </div>
+        )}
         <div className={style.card}>
           {currentCountry.length > 0 ? (
             currentCountry.map((coun) => (
@@ -68,17 +70,6 @@ const HomePage = () => {
             <p>No se encontraron países con esas actividades</p>
           )}
         </div>
-        {allCountries.length > 10 && (
-          <div>
-            <Paginated
-              countryPerPage={10}
-              allCountries={allCountries.length}
-              paginated={paginated}
-              currentPage={currentPage}
-              allActivities={allActivities.length}
-            />
-          </div>
-        )}
       </div>
     </div>
   );

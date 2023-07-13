@@ -11,6 +11,12 @@ const SearchBar = () => {
   const [errors, setErrors] = useState(false);
   const resultsRef = useRef(null);
   const [isListVisible, setListVisible] = useState(false);
+  const [resetFilters, setResetFilters] = useState(true);
+
+  const handleShowAllCountries = () => {
+    dispatch(actions.resetFilters());
+    setResetFilters(true);
+  };
 
   const handleChange = (event) => {
     const searchTerm = event.target.value.toLowerCase();
@@ -33,11 +39,13 @@ const SearchBar = () => {
       if (resultsRef.current) {
         resultsRef.current.style.display = "none";
       }
+      setResetFilters(false);
     }
   };
 
   const handleSubmit = () => {
     dispatch(actions.onSearch(name));
+    setResetFilters(false);
   };
 
   useEffect(() => {
@@ -50,6 +58,7 @@ const SearchBar = () => {
     setErrors(false);
     resultsRef.current.style.display = "none";
     setListVisible(false);
+    setResetFilters(false);
   };
 
   const handleBlur = () => {
@@ -71,9 +80,17 @@ const SearchBar = () => {
   return (
     <div className={style.searchContainer}>
       <div className={style.searchInputContainer}>
+        <button
+          onClick={handleShowAllCountries}
+          className={`${style.showAllButton} ${
+            resetFilters && filteredCountries.length >= 0 ? style.hidden : ""
+          }`}
+        >
+          <img src="../../../public/img/recarga.png" alt="" />
+        </button>
         <input
           type="text"
-          placeholder="Buscar"
+          placeholder="Search"
           name="pais"
           value={name}
           onChange={(event) => {
@@ -90,8 +107,7 @@ const SearchBar = () => {
           className={style.searchIcon}
           onClick={() => handleSubmit(filteredCountries[0])}
           disabled={filteredCountries.length !== 1}
-        >
-        </button>
+        ></button>
       </div>
       {isListVisible && filteredCountries.length > 0 && (
         <ul className={style.searchResults} ref={resultsRef}>

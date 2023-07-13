@@ -1,4 +1,5 @@
 .header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +18,9 @@
   background: url("../../../public/img/mapa.png") repeat-x;
   background-size: auto 100%;
   animation: rotate 15s infinite linear;
-
+  position: absolute;
+  right: 0;
+  margin-right: 30px;
 }
 
 @keyframes rotate {
@@ -36,29 +39,21 @@
   line-height: 1.1;
   position: absolute;
   left: 1;
+  margin-left: 10px;
 }
 
 .card{
-  display: grid;
-  grid-template-columns: repeat(5, minmax(190px, 1fr));
+  width: 100%;
+  display: flex;
   justify-content: space-around;
-  grid-gap: 20px;
-  margin: 20px;
-
- 
-}
-
-.cards{
-  display: grid;
-  grid-template-columns: repeat(5, minmax(190px, 1fr));
-  justify-content: space-around;
-  grid-gap: 20px;
-  margin: 20px;
-  
+  margin: 40px 0;
+  flex-wrap: wrap;
+  padding: 0 10px;
 }
 
 .tarjet{
-  margin: auto;
+  margin: 0px;
+  padding: 30px;
 }
 
 .container {
@@ -92,25 +87,4 @@
   width: 30%;
   gap: 15px;
   margin: 0 auto;
-}
-
-.showAllButton {
-  width: 35px;
-  height: 35px;
-  border: none;
-  padding-top: 2px;
-  padding-left: 3px;
-  margin-top: 3px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.showAllButton:hover {
-  background-color: #e2dfdfa9;
-}
-
-.showAllButton img {
-  width: 23px;
-  height: 20px;
 }

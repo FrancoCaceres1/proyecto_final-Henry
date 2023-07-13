@@ -1,49 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
 .nav {
+  width: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  border-radius: 10px;
-  padding: 3px 20px;
+  background-color: #F1F1F1;
 }
 
 .ul {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   list-style: none;
-  margin: 3px 0;
+  padding: 5px;
+  gap: 3px;
+  width: 90%;
+  overflow-x: auto; 
 }
-.a {
-  padding: 8px;
-  color: white;
-  cursor: pointer;
-  font-size: 20px;
+
+.numbersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
-.a:hover {
-  color: #f5f584;
+
+.numbers {
+  padding: 0 10px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .paging {
-  background-color: #3c2a21;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: rgb(54, 54, 54);
+  font-size: 12px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.paging:hover {
+  background-color: rgb(54, 54, 54);
   color: white;
-  padding: 4px;
-  border-radius: 5px;
-  margin: 1px;
 }
 
 .pagingActive {
-  transform: scale(1.1);
-  background-color: #f5f584;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 1px;
-}
-
-.li:hover {
-  transform: scale(1.25);
-}
-
-.lii {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transform: scale(1.02);
+  background-color: rgb(54, 54, 54);
   color: white;
-  padding-right: 20px;
-  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.pagingButton {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: rgb(54, 54, 54);
+  font-size: 14px;
+  width: 55px;
+  height: 30px;
+  border-radius: 20px;
+  border: solid 1px rgb(46, 79, 82);
+  margin: 1px;
+  cursor: pointer;
+}
+
+.pagingButton:hover {
+  background-color: rgb(54, 54, 54);
+  color: white;
 }

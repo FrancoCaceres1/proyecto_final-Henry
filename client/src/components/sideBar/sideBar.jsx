@@ -14,9 +14,6 @@ const Sidebar = () => {
       <button className={styles.toggleButton} onClick={toggleSidebar}>
         <span></span>
       </button>
-      {/* <button className={styles.homeButton}>
-        <img src="../../../public/img/home-01.png" alt="" />
-      </button> */}
       <NavBarSideBar />
       <div
         className={`${styles.content} ${isExpanded ? styles.showContent : ""}`}
