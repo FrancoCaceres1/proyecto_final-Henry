@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.ENUM(
           "Trekking",
-          "Caminata",
+          "Hike",
           "Bike Tour",
           "City Tour",
           "Gastronomic Circuit",
@@ -35,10 +35,15 @@ module.exports = (sequelize) => {
         allowNull: false,
         isInt: true,
         min: 1,
-        max: 24,
+        max: 12,
+        checkDuration(value) {
+          if (value > 12) {
+            throw new ValidationError("The duration cannot be more than 12 hours");
+          }
+        },
       },
       season: {
-        type: DataTypes.ENUM("Verano", "Otoño", "Invierno", "Primavera"),
+        type: DataTypes.ENUM("Summer", "Autumn", "Winter", "Spring"),
         allowNull: false,
       },
     },

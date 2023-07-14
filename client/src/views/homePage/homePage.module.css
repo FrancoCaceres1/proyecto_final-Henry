@@ -1,57 +1,23 @@
-.header {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+.fondo {
+  margin: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #f4f4f4;
+  height: 100%;
+  background-image: url("../../../public/img/fondoMapa.png");
 }
 
-.earth {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  z-index: 1;
-  box-shadow: -20px -20px 0 -10px rgba(0, 0, 0, 0.15) inset,
-    -60px -20px 0 0 rgba(0, 0, 0, 0.1) inset,
-    5px 5px 0 0 rgba(255, 255, 255, 0.2) inset;
-  background: url("../../../public/img/mapa.png") repeat-x;
-  background-size: auto 100%;
-  animation: rotate 15s infinite linear;
-  position: absolute;
-  right: 0;
-  margin-right: 30px;
-}
-
-@keyframes rotate {
-  from {
-    background-position: 0 center;
-  }
-  to {
-    background-position: -495px center;
-  }
-}
-
-.logo {
-  font-size: 24px;
-  color: black;
-  font-weight: bold;
-  line-height: 1.1;
-  position: absolute;
-  left: 1;
-  margin-left: 10px;
-}
-
-.card{
+.card {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-around;
-  margin: 40px 0;
   flex-wrap: wrap;
-  padding: 0 10px;
+  padding: 40px 10px 0 10px;
+  backdrop-filter: blur(0.04em);
 }
 
-.tarjet{
+.tarjet {
   margin: 0px;
   padding: 30px;
 }
@@ -62,22 +28,8 @@
 
 .content {
   margin-left: 70px;
+  width: 100%;
   flex-grow: 1;
-}
-
-.sidebarToggle {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
-  padding: 10px;
-  background-color: #f1f1f1;
-  border: none;
-  cursor: pointer;
-}
-
-.sidebarToggle:hover {
-  background-color: #e2dfdfa9;
 }
 
 .search {
@@ -87,4 +39,48 @@
   width: 30%;
   gap: 15px;
   margin: 0 auto;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 30px;
+  width: 100%;
+  height: auto;
+}
+
+.errorImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  border: solid 1px rgb(46, 79, 82);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.errorImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.error h2 {
+  font-family: "Roboto", sans-serif;
+  color: rgb(29, 51, 53);
+  width: 500px;
+  padding: 40px;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  border: solid 1px rgb(46, 79, 82);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }

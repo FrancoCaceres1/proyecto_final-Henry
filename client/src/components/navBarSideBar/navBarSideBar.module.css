@@ -99,3 +99,32 @@
   background-color: #e2dfdfa9;
   border: none;
 }
+
+.showActivityButton {
+  width: 90%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.showActivityButton img {
+  width: 26px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+.showActivityButton:focus{
+  outline: #414141;
+}
+
+.showActivityButton:hover {
+  background-color: #e2dfdfa9;
+  border: none;
+}

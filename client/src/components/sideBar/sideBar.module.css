@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 .sidebar {
   position:fixed;
   display: flex;
@@ -19,7 +21,7 @@
   height: 45px;
   padding: 10px;
   font-size: 10px;
-  margin-top: 18px;
+  margin-top: 20px;
   border-radius: 50%;
   font-weight: bold;
   background-color: #f4f4f4;
@@ -89,6 +91,8 @@
 
 .closeButtonContainer p {
   font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(29, 51, 53);
 }
 
 .closeButton {

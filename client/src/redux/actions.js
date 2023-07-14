@@ -45,7 +45,16 @@ export const addActivity = (activities) => {
       );
       return dispatch({ type: "ADD_ACTIVITIES", payload: data });
     } catch (error) {
-      alert("Error: " + error.response.data.error);
+      if (error.response && error.response.data && error.response.data.error) {
+        const errorMessage = error.response.data.error;
+        alert("Error: " + errorMessage);
+      } else if (error.response && error.response.data && error.response.data.errors) {
+        const validationErrors = error.response.data.errors;
+        const errorMessage = validationErrors.map((err) => err.message).join("\n");
+        alert("Validation error:\n" + errorMessage);
+      } else {
+        alert("An error occurred while creating the activity");
+      }
     }
   };
 };

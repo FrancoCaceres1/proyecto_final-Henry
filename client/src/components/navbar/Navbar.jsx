@@ -1,32 +1,44 @@
 import { Link, useLocation } from "react-router-dom";
-import style from "./navbar.module.css";
+import styles from "./navbar.module.css";
 
 const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/home";
 
   return (
-    <div>
+    <div className={styles.container}>
       <Link to="/home">
-        <button className={style.button}>HOME</button>
+        <button className={styles.homeButton}>
+          <img src="../../../public/img/home.png" alt="home button" />
+          <p>home</p>
+        </button>
       </Link>
       {isHomePage && (
         <Link to="/activities">
-          <button className={style.button}>ACTIVIDADES</button>
+          <button className={styles.activityButton}>
+            <img
+              src="../../../public/img/caminata.png"
+              alt="activities button"
+            />
+            <p>activities</p>
+          </button>
         </Link>
       )}
       {location.pathname === "/activities" && (
         <Link to="/ver">
-          <button className={style.button}>Ver</button>
+          <button className={styles.button}>Ver</button>
         </Link>
       )}
       {location.pathname === "/ver" && (
-        <button className={style.button} onClick={() => window.history.back()}>
+        <button className={styles.button} onClick={() => window.history.back()}>
           Back
         </button>
       )}
       <Link to="/">
-        <button className={style.button}>LOGOUT</button>
+        <button className={styles.logoutButton}>
+          <img src="../../../public/img/logout.png" alt="logout button" />
+          <p>logout</p>
+        </button>
       </Link>
     </div>
   );

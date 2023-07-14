@@ -1,6 +1,6 @@
 import styles from "./paginated.module.css";
 
-const Paginated = ({ paginated, currentPage }) => {
+const Paginated = ({ paginated, currentPage, allCountries }) => {
   const pageNumbers = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25
@@ -20,6 +20,7 @@ const Paginated = ({ paginated, currentPage }) => {
 
   return (
     <nav className={styles.nav}>
+      {allCountries.length > 10 && (
       <ul className={styles.ul}>
         <li>
           <button
@@ -57,6 +58,7 @@ const Paginated = ({ paginated, currentPage }) => {
           </button>
         </li>
       </ul>
+      )}
     </nav>
   );
 };

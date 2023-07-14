@@ -17,7 +17,7 @@ function Cards() {
   }, []);
 
   return (
-    <div className="country-list">
+    <div>
       {countries.map((country) => (
         <Card key={country.id} country={country} />
       ))}

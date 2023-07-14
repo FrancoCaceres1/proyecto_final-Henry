@@ -1,8 +1,8 @@
 import * as actions from "../../redux/actions";
 import { initialState } from "../../redux/reducers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import style from "./options.module.css";
+import styles from "./options.module.css";
 
 const Options = () => {
   const dispatch = useDispatch();
@@ -10,13 +10,11 @@ const Options = () => {
   const [isOpenActivity, setIsOpenActivity] = useState(false);
   const [isOpenOrder, setIsOpenOrder] = useState(false);
   const [showButtonText, setShowButtonText] = useState(false);
-
-  const [selectedContinent, setSelectedContinent] = useState(
-    initialState.selectedContinent
-  );
-  const [selectedActivity, setSelectedActivity] = useState(
-    initialState.selectedActivity
-  );
+  const selectOrderRef = useRef(null);
+  const selectActivityRef = useRef(null);
+  const selectContinentRef = useRef(null);
+  const [selectedContinent, setSelectedContinent] = useState("All");
+  const [selectedActivity, setSelectedActivity] = useState("All");
   const [selectedOrder, setSelectedOrder] = useState("Any");
 
   useEffect(() => {
@@ -27,30 +25,35 @@ const Options = () => {
     dispatch(actions.filterActivities(initialState.selectedActivity));
   }, [dispatch]);
 
-  useEffect(() => {
-    if (selectedContinent === "All" && selectedActivity === "All") {
-      setShowButtonText(false);
-    } else {
-      setShowButtonText(true);
-    }
-  }, [selectedContinent, selectedActivity]);
-
   const handleFilterContinent = (event) => {
     setSelectedContinent(event.target.value);
-    dispatch(actions.filterCountryByContinent(event.target.value));
-    setShowButtonText(true);
+    if (event.target.value === "All") {
+      handleResetFilters();
+      setShowButtonText(false);
+    } else {
+      setSelectedContinent(event.target.value);
+      dispatch(actions.filterCountryByContinent(event.target.value));
+      setShowButtonText(true);
+    }
   };
 
   const handleFilterActivities = (event) => {
     setSelectedActivity(event.target.value);
-    dispatch(actions.filterActivities(event.target.value));
-    setShowButtonText(true);
+    if (event.target.value === "All") {
+      handleResetFilters();
+      setShowButtonText(false);
+    } else {
+      setSelectedActivity(event.target.value);
+      dispatch(actions.filterActivities(event.target.value));
+      setShowButtonText(true);
+    }
   };
 
   const handleFilterOrder = (event) => {
     setSelectedOrder(event.target.value);
     if (event.target.value === "Any") {
       handleResetFilters();
+      setShowButtonText(false);
     } else {
       setSelectedOrder(event.target.value);
       dispatch(actions.filterOrder(event.target.value));
@@ -64,6 +67,8 @@ const Options = () => {
     setSelectedContinent(initialState.selectedContinent);
     setSelectedActivity(initialState.selectedActivity);
     setSelectedOrder("Any");
+    setSelectedActivity("All");
+    setSelectedContinent("All");
     dispatch(actions.filterCountryByContinent(initialState.selectedContinent));
     dispatch(actions.filterActivities(initialState.selectedActivity));
     setShowButtonText(false);
@@ -81,18 +86,39 @@ const Options = () => {
     setIsOpenOrder(!isOpenOrder);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event, ref, setIsOpen) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleDocumentClick = (event) => {
+      handleClickOutside(event, selectOrderRef, setIsOpenOrder);
+      handleClickOutside(event, selectActivityRef, setIsOpenActivity);
+      handleClickOutside(event, selectContinentRef, setIsOpenContinent);
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
   return (
-    <div className={style.optionsContainer}>
-      <div className={style.selectContainer}>
+    <div className={styles.optionsContainer}>
+      <div className={styles.selectContainer}>
         <div
-          className={`${style.selectContainerFilter} ${
-            isOpenContinent ? style.open : ""
+          className={`${styles.selectContainerFilter} ${
+            isOpenContinent ? styles.open : ""
           }`}
         >
           <select
+            ref={selectContinentRef}
             value={selectedContinent}
             onChange={handleFilterContinent}
-            className={style.select}
+            className={styles.select}
             onClick={handleSelectToggleContinent}
           >
             <option value="All">All Continents</option>
@@ -104,22 +130,23 @@ const Options = () => {
             <option value="Europe">Europe</option>
             <option value="Oceania">Oceania</option>
           </select>
-          <div className={style.selectArrow}></div>
+          <div className={styles.selectArrow}></div>
         </div>
         <div
-          className={`${style.selectContainerFilter} ${
-            isOpenActivity ? style.open : ""
+          className={`${styles.selectContainerFilter} ${
+            isOpenActivity ? styles.open : ""
           }`}
         >
           <select
+            ref={selectActivityRef}
             value={selectedActivity}
             onChange={handleFilterActivities}
-            className={style.select}
+            className={styles.select}
             onClick={handleSelectToggleActivity}
           >
             <option value="All">All Activities</option>
             <option value="Trekking">Trekking</option>
-            <option value="Caminata">hike</option>
+            <option value="Caminata">Hike</option>
             <option value="Bike Tour">Bike Tour</option>
             <option value="City Tour">City Tour</option>
             <option value="Gastronomic Circuit">Gastronomic Circuit</option>
@@ -128,32 +155,33 @@ const Options = () => {
             <option value="Museum Circuit">Museum Circuit</option>
             <option value="Free Choice">Free Choice</option>
           </select>
-          <div className={style.selectArrow}></div>
+          <div className={styles.selectArrow}></div>
         </div>
         <div
-          className={`${style.selectContainerFilter} ${
-            isOpenOrder ? style.open : ""
+          className={`${styles.selectContainerFilter} ${
+            isOpenOrder ? styles.open : ""
           }`}
         >
           <select
+            ref={selectOrderRef}
             value={selectedOrder}
             onChange={handleFilterOrder}
-            className={style.select}
+            className={styles.select}
             onClick={handleSelectToggleOrder}
           >
             <option value="Any">Any Order</option>
-            <option value="D">↑A-Z Country</option>
-            <option value="A">↓A-Z Country</option>
-            <option value="P">↑ Population</option>
-            <option value="G">↓ Population</option>
+            <option value="D">&uarr; A-Z Country</option>
+            <option value="A">&darr; A-Z Country</option>
+            <option value="P">&uarr; Population</option>
+            <option value="G">&darr; Population</option>
           </select>
-          <div className={style.selectArrow}></div>
+          <div className={styles.selectArrow}></div>
         </div>
       </div>
       <button
         onClick={handleResetFilters}
-        className={`${style.resetButton} ${
-          !showButtonText && selectedOrder === "Any" ? style.hidden : ""
+        className={`${styles.resetButton} ${
+          !showButtonText ? styles.hidden : ""
         }`}
       >
         Reset Filters

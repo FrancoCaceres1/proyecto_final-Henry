@@ -2,23 +2,23 @@ const validation = (form) => {
   const errors = {};
 
   if (form.name === "") {
-    errors.name = "Debes seleccionar una actividad";
+    errors.name = "* obligatory field";
   }
 
   if (!form.difficulty) {
-    errors.difficulty = "Selecciona un grado de dificultad";
+    errors.difficulty = "* obligatory field";
   }
 
   if (!form.duration) {
-    errors.duration = "Selecciona o ingresa un número";
+    errors.duration = "* obligatory field";
   }
 
   if (!form.season) {
-    errors.season = "Selecciona una temporada";
+    errors.season = "* obligatory field";
   }
 
   if (!form.pais.length) {
-    errors.pais = "Debes seleccionar al menos un (1) país";
+    errors.pais = "* select at least one country";
   }
 
   return errors;
