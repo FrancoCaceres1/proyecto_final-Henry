@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 25px;
   font-size: 12px;
 }
 
@@ -17,7 +17,7 @@
 
 .homeButton {
   width: 90%;
-  height: 70px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,7 +45,7 @@
 
 .activityButton {
   width: 90%;
-  height: 70px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,7 +73,7 @@
 
 .logoutButton {
   width: 90%;
-  height: 70px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,7 +102,7 @@
 
 .showActivityButton {
   width: 90%;
-  height: 70px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,8 +115,8 @@
 }
 
 .showActivityButton img {
-  width: 26px;
-  height: 35px;
+  width: 25px;
+  height: 30px;
   margin-right: 5px;
 }
 

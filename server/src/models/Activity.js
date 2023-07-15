@@ -26,20 +26,16 @@ module.exports = (sequelize) => {
       difficulty: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        isInt: true,
-        min: 1,
-        max: 5,
+        validate: {
+          min: 1,
+          max: 5,
+        },
       },
       duration: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        isInt: true,
-        min: 1,
-        max: 12,
-        checkDuration(value) {
-          if (value > 12) {
-            throw new ValidationError("The duration cannot be more than 12 hours");
-          }
+        validate: {
+          min: 1,
         },
       },
       season: {

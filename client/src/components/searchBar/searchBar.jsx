@@ -119,7 +119,7 @@ const SearchBar = () => {
         </ul>
       )}
       {errors && name.length > 0 && (
-        <p className={style.error}>No se encontró ese país</p>
+        <p className={style.error}>Not founded</p>
       )}
     </div>
   );

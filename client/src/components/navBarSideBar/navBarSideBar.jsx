@@ -32,14 +32,14 @@ const NavBarSideBar = () => {
           </button>
         </Link>
       )}
-      {location.pathname === "/activities" && (
+      {location.pathname !== "/ver" && (
         <Link to="/ver">
           <button className={styles.showActivityButton}>
             <img
               src="../../../public/img/lista.png"
               alt="activities list button"
             />
-            <p>activities</p>
+            <p>activities list</p>
           </button>
         </Link>
       )}

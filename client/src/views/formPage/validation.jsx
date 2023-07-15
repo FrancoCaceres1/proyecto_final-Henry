@@ -2,19 +2,19 @@ const validation = (form) => {
   const errors = {};
 
   if (form.name === "") {
-    errors.name = "* obligatory field";
+    errors.name = "*";
   }
 
   if (!form.difficulty) {
-    errors.difficulty = "* obligatory field";
+    errors.difficulty = "*";
   }
 
   if (!form.duration) {
-    errors.duration = "* obligatory field";
+    errors.duration = "*";
   }
 
   if (!form.season) {
-    errors.season = "* obligatory field";
+    errors.season = "*";
   }
 
   if (!form.pais.length) {

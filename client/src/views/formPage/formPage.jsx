@@ -21,15 +21,20 @@ const FormPage = () => {
   const dispatch = useDispatch();
   const [isSearchListVisible, setSearchListVisible] = useState(false);
   const [isFormValid, setFormValid] = useState(false);
+  const incrementIntervalRef = useRef(null);
+  const decrementIntervalRef = useRef(null);
+  const [showAlert1, setShowAlert1] = useState(false);
+  const [showAlert2, setShowAlert2] = useState(false);
+  const [showAlert3, setShowAlert3] = useState(false);
   const [form, setForm] = useState({
     name: "",
     difficulty: "",
-    duration: "",
+    duration: "1",
     season: "",
     pais: [],
   });
   const [errors, setErrors] = useState({
-    name: "* obligatory field",
+    name: "*",
   });
 
   const handleChange = (event) => {
@@ -70,16 +75,40 @@ const FormPage = () => {
       !errors.season &&
       !errors.pais
     ) {
-      dispatch(actions.addActivity(form));
-      setForm({
-        name: "",
-        difficulty: "",
-        duration: "",
-        season: "",
-        pais: [],
-      });
-      alert("La actividad se creó con éxito");
-      selectRef.current.selectedIndex = 0;
+      dispatch(actions.addActivity(form))
+        .then(() => {
+          setForm({
+            name: "",
+            difficulty: "",
+            duration: "1",
+            season: "",
+            pais: [],
+          });
+          setShowAlert1(true);
+          selectRef.current.selectedIndex = 0;
+        })
+        .catch((error) => {
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            const errorMessage = error.response.data.error;
+            alert("Error: " + errorMessage);
+          } else if (
+            error.response &&
+            error.response.data &&
+            error.response.data.errors
+          ) {
+            const validationErrors = error.response.data.errors;
+            const errorMessage = validationErrors
+              .map((err) => err.message)
+              .join("\n");
+            alert("Validation error:\n" + errorMessage);
+          } else {
+            alert("An error occurred while creating the activity");
+          }
+        });
     } else {
       setErrors(validation(form));
     }
@@ -107,7 +136,9 @@ const FormPage = () => {
     if (country) {
       const selectedCountry = country.name;
       if (form.pais.includes(selectedCountry)) {
-        alert("El país ya ha sido seleccionado");
+        setShowAlert2(true);
+      } else if (form.pais.length >= 10) {
+        setShowAlert3(true);
       } else {
         setForm((prevForm) => ({
           ...prevForm,
@@ -145,7 +176,7 @@ const FormPage = () => {
       !errors.duration &&
       !errors.season &&
       !errors.pais &&
-      form.pais.length - 1 > 0; // Verificar si quedan al menos dos países seleccionados
+      form.pais.length - 1 > 0;
     setFormValid(isFormValid);
   };
 
@@ -181,17 +212,96 @@ const FormPage = () => {
     };
   }, []);
 
+  const handleDurationChange = (amount) => {
+    const newDuration = +form.duration + amount;
+    if (newDuration >= 1) {
+      setForm((prevForm) => ({
+        ...prevForm,
+        duration: newDuration,
+      }));
+    }
+  };
+
+  const handleIncrementMouseDown = () => {
+    clearInterval(decrementIntervalRef.current);
+    incrementIntervalRef.current = setTimeout(() => {
+      increment();
+      incrementIntervalRef.current = setInterval(increment, 100);
+    }, 500);
+  };
+
+  const handleDecrementMouseDown = () => {
+    clearInterval(incrementIntervalRef.current);
+    decrementIntervalRef.current = setTimeout(() => {
+      decrement();
+      decrementIntervalRef.current = setInterval(decrement, 100);
+    }, 500);
+  };
+
+  const handleButtonMouseUp = () => {
+    clearInterval(incrementIntervalRef.current);
+    clearInterval(decrementIntervalRef.current);
+    clearTimeout(decrementIntervalRef.current);
+  };
+
+  const decrement = () => {
+    setForm((prevForm) => {
+      const newDuration = Math.max(+prevForm.duration - 1, 1);
+      if (newDuration === 1) {
+        clearInterval(decrementIntervalRef.current);
+      }
+      return {
+        ...prevForm,
+        duration: newDuration,
+      };
+    });
+  };
+
+  const increment = () => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      duration: Math.max(+prevForm.duration + 1, 1),
+    }));
+  };
+
   return (
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.content}>
         <Header></Header>
+        <div className={styles.titleContainer}>
+          <h1>Create Activity</h1>
+        </div>
         <div className={styles.formContainer}>
           <div
             className={`${styles.imgContainer} ${
               showTitle ? "" : styles.hidden
             }`}
           >
+            {showAlert1 && (
+              <div className={styles.alerta}>
+                <div className={styles.alertContainer}>
+                  <p className={styles.alertSucces}>The activity has been successfully created!</p>
+                  <button onClick={() => setShowAlert1(false)}>Okey</button>
+                </div>
+              </div>
+            )}
+            {showAlert2 && (
+              <div className={styles.alerta}>
+                <div className={styles.alertContainer}>
+                  <p className={styles.alertError}>The selected country is already in the list!</p>
+                  <button onClick={() => setShowAlert2(false)}>Okey</button>
+                </div>
+              </div>
+            )}
+            {showAlert3 && (
+              <div className={styles.alerta}>
+                <div className={styles.alertContainer}>
+                  <p className={styles.alertError}>Cannot add more than 10 countries!</p>
+                  <button onClick={() => setShowAlert3(false)}>Okey</button>
+                </div>
+              </div>
+            )}
             <div className={styles.tituloContainer}>
               <h2>Selected Countries</h2>
               <p>&quot;Click&quot; to delete</p>
@@ -298,9 +408,32 @@ const FormPage = () => {
                 onChange={handleChange}
                 name="duration"
                 min={1}
-                max={12}
                 readOnly
               />
+              <div className={styles.buttonContainer}>
+                <button
+                  className={styles.buttonIn}
+                  type="button"
+                  onMouseDown={handleIncrementMouseDown}
+                  onMouseUp={handleButtonMouseUp}
+                  onMouseLeave={handleButtonMouseUp}
+                  onClick={() => handleDurationChange(1)}
+                >
+                  &#9650;
+                </button>
+                <button
+                  className={styles.buttonDe}
+                  type="button"
+                  onMouseDown={handleDecrementMouseDown}
+                  onMouseUp={handleButtonMouseUp}
+                  onMouseLeave={handleButtonMouseUp}
+                  onClick={() => handleDurationChange(-1)}
+                  disabled={form.duration <= 1}
+                >
+                  &#9660;
+                </button>
+              </div>
+              <p>hrs</p>
               {errors.duration && (
                 <p className={styles.error}>{errors.duration}</p>
               )}
@@ -328,7 +461,7 @@ const FormPage = () => {
                   onClick={() => handleSearchSubmit(filteredCountries[0])}
                   disabled={filteredCountries.length !== 1}
                 >
-                  ADD
+                  <p>&#8594;</p>
                 </button>
               </div>
               {filteredCountries.length > 0 && !isSearchListVisible && (
@@ -370,7 +503,7 @@ const FormPage = () => {
                 type="submit"
                 className={styles.button}
                 onClick={handleSubmit}
-                disabled={!isFormValid}
+                disabled={!isFormValid || form.duration < 1}
               >
                 Create Activity
               </button>

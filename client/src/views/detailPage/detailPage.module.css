@@ -5,15 +5,24 @@
   align-items: center;
   justify-content: center;
 }
+
+.content{
+  margin-left: 70px;
+  width: 100%;
+  flex-grow: 1;
+}
+
 .box,
 .box2 {
   margin: 100px 50px;
   width: 50%;
 }
+
 .box2 {
   background-color: rgb(127, 195, 255);
   border-radius: 5px;
 }
+
 .img {
   width: 50%;
   height: auto;
