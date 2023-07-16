@@ -59,7 +59,7 @@ const HomePage = () => {
               ))
             ) : (
               <div className={style.error}>
-                <h2>No countries were found with those activities</h2>
+                <h2>No countries were found</h2>
                 <div className={style.errorImage}>
                   <img src="../../../public/img/noFound.png" alt="" />
                 </div>

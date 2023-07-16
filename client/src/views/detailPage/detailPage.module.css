@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
 .container {
   display: flex;
@@ -6,31 +6,182 @@
   justify-content: center;
 }
 
-.content{
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding-right: 38px;
+  background-color: #f1f1f1;
+  -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+}
+
+.titleContainer h1 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #041618;
+}
+
+.titleContainer img {
+  width: 45px;
+  padding-right: 10px;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: #f1f1f1;
+}
+
+.navContainer button {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 35px;
+  font-size: 18px;
+  padding-left: 35px;
+  padding-top: 2px;
+  border-radius: 5px;
+  border: 1px solid #081e22;
+  color: #f1f1f1;
+  background-color: #081e22;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.navContainer button:hover {
+  transform: scale(1.05);
+  color: #081e22;
+  background-color: #f1f1f1;
+}
+
+.content {
   margin-left: 70px;
   width: 100%;
   flex-grow: 1;
+  background: #8e9eab;
+  background: -webkit-linear-gradient(to left, #eef2f3, #8e9eab);
+  background: linear-gradient(to left, #eef2f3, #8e9eab);
 }
 
-.box,
-.box2 {
-  margin: 100px 50px;
-  width: 50%;
+.boxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-top: 30px;
 }
 
-.box2 {
-  background-color: rgb(127, 195, 255);
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 600px;
+  height: 550px;
+  padding: 30px 0;
+  gap: 30px;
+  background: #c9d6ff;
+  background: -webkit-linear-gradient(to right, #e2e2e2, #dcf2ff);
+  background: linear-gradient(to right, #e2e2e2, #dcf2ff);
   border-radius: 5px;
 }
 
+.box2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  width: 600px;
+  height: 550px;
+  padding: 30px 0;
+  background: #c9d6ff;
+  background: -webkit-linear-gradient(to left, #e2e2e2, #dcf2ff);
+  background: linear-gradient(to left, #e2e2e2, #dcf2ff);
+  border-radius: 5px;
+}
+
+.imgContainer {
+  display: flex;
+  width: 400px;
+  height: 250px;
+  transition: 0.5s;
+}
+
+.imgContainer:hover {
+  transform: scale(1.02);
+  filter: brightness(1.08) saturate(1.08);
+}
+
 .img {
-  width: 50%;
-  height: auto;
+  width: 100%;
+  object-fit: fill;
 }
 
 .text {
-  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 520px;
+  font-family: "Roboto", sans-serif;
   font-size: 25px;
-  color: white;
-  margin: 10px;
+  color: #051113;
+}
+
+.text span {
+  padding: 5px 10px;
+  width: 350px;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+}
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  color: #051113;
+  font-size: 17px;
+  gap: 15px;
+}
+
+.textActivities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 25px;
+  color: #051113;
+}
+
+.seeButton {
+  width: 200px;
+  height: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  border: 1px solid #051113;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.seeButton:hover {
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  transform: scale(1.05);
+  color: #f1f1f1;
+  background-color: #081e22;
 }

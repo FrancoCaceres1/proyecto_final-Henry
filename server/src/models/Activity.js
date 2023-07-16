@@ -24,12 +24,8 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       difficulty: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ENUM("Soft", "Easy", "Normal", "Difficult", "Hard"),
         allowNull: false,
-        validate: {
-          min: 1,
-          max: 5,
-        },
       },
       duration: {
         type: DataTypes.INTEGER,

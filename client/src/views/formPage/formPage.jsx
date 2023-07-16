@@ -272,6 +272,9 @@ const FormPage = () => {
         <div className={styles.titleContainer}>
           <h1>Create Activity</h1>
         </div>
+        <div className={styles.navContainer}>
+          <button onClick={() => window.history.back()}>&#9664; Back</button>
+        </div>
         <div className={styles.formContainer}>
           <div
             className={`${styles.imgContainer} ${
@@ -281,7 +284,9 @@ const FormPage = () => {
             {showAlert1 && (
               <div className={styles.alerta}>
                 <div className={styles.alertContainer}>
-                  <p className={styles.alertSucces}>The activity has been successfully created!</p>
+                  <p className={styles.alertSucces}>
+                    The activity has been successfully created!
+                  </p>
                   <button onClick={() => setShowAlert1(false)}>Okey</button>
                 </div>
               </div>
@@ -289,7 +294,9 @@ const FormPage = () => {
             {showAlert2 && (
               <div className={styles.alerta}>
                 <div className={styles.alertContainer}>
-                  <p className={styles.alertError}>The selected country is already in the list!</p>
+                  <p className={styles.alertError}>
+                    The selected country is already in the list!
+                  </p>
                   <button onClick={() => setShowAlert2(false)}>Okey</button>
                 </div>
               </div>
@@ -297,7 +304,9 @@ const FormPage = () => {
             {showAlert3 && (
               <div className={styles.alerta}>
                 <div className={styles.alertContainer}>
-                  <p className={styles.alertError}>Cannot add more than 10 countries!</p>
+                  <p className={styles.alertError}>
+                    Cannot add more than 10 countries!
+                  </p>
                   <button onClick={() => setShowAlert3(false)}>Okey</button>
                 </div>
               </div>
@@ -356,11 +365,11 @@ const FormPage = () => {
                 <option value="" disabled defaultValue="">
                   Select a value
                 </option>
-                <option value={1}>Soft</option>
-                <option value={2}>Easy</option>
-                <option value={3}>Normal</option>
-                <option value={4}>Difficult</option>
-                <option value={5}>Hard</option>
+                <option value={"Soft"}>Soft</option>
+                <option value={"Easy"}>Easy</option>
+                <option value={"Normal"}>Normal</option>
+                <option value={"Difficult"}>Difficult</option>
+                <option value={"Hard"}>Hard</option>
               </select>
               <div className={styles.selectArrow}></div>
               {errors.difficulty && (

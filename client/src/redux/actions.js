@@ -64,6 +64,7 @@ export const getActivities = () => {
     try {
       const { data } = await axios.get("http://localhost:3001/activities");
       return dispatch({ type: "GET_ACTIVITIES", payload: data });
+      
     } catch (error) {
       alert("Error: " + error.response.data.error);
     }
@@ -167,5 +168,12 @@ export const fetchActivities = () => {
 export const resetFilters = () => {
   return {
     type: "RESET_FILTERS",
+  };
+};
+
+export const flipCard = (cardId) => {
+  return {
+    type: "FLIP_CARD",
+    payload: cardId,
   };
 };

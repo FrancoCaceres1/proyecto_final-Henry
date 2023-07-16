@@ -7,6 +7,7 @@ export const initialState = {
   selectedContinent: "All",
   selectedActivity: "All",
   searchError: null,
+  flippedCards: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -176,6 +177,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         allCountriesFilter: state.allCountries,
       };
+
+    case "FLIP_CARD": {
+      const cardId = action.payload;
+      const flippedCards = state.flippedCards.includes(cardId)
+        ? state.flippedCards.filter((id) => id !== cardId)
+        : [...state.flippedCards, cardId];
+      return {
+        ...state,
+        flippedCards,
+      };
+    }
 
     default:
       return state;

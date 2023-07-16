@@ -64,7 +64,6 @@
 }
 
 .container.hovered {
-  /* transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) scale(1.02); */
   z-index: 1;
   transform: scale(1.02);
   background: linear-gradient(45deg, #e6e6e6, #ffffff);

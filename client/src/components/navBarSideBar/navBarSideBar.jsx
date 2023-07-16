@@ -7,7 +7,6 @@ const NavBarSideBar = () => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  const isHomePage = location.pathname === "/home";
 
   const handleShowAllCountries = () => {
     dispatch(actions.resetFilters());
@@ -21,7 +20,7 @@ const NavBarSideBar = () => {
           <p>home</p>
         </button>
       </Link>
-      {isHomePage && (
+      {location.pathname !== "/activities" && (
         <Link to="/activities">
           <button className={styles.activityButton}>
             <img
@@ -42,18 +41,6 @@ const NavBarSideBar = () => {
             <p>activities list</p>
           </button>
         </Link>
-      )}
-      {location.pathname === "/ver" && (
-        <button
-          className={styles.backButton}
-          onClick={() => window.history.back()}
-        >
-          <img
-            // src="../../../public/img/caminata.png"
-            alt="back button"
-          />
-          <p>back</p>
-        </button>
       )}
       <Link to="/">
         <button className={styles.logoutButton}>
