@@ -62,7 +62,7 @@ const ActivityCards = ({ activities }) => {
                     className={styles.deleteButton}
                     onClick={() => handleDelete(activity.id)}
                   >
-                    <img src="../../../public/img/trash.png" alt="" />
+                    <img src="/img/trash.png" alt="" />
                   </button>
                 </div>
               </div>
@@ -91,7 +91,7 @@ const ActivityCards = ({ activities }) => {
         <div className={styles.error}>
           <h2>No activities were found</h2>
           <div className={styles.errorImage}>
-            <img src="../../../public/img/noFoundActivity.png" alt="" />
+            <img src="/img/noFoundActivity.png" alt="" />
           </div>
         </div>
       )}

@@ -315,7 +315,7 @@ const FormPage = () => {
               <h2>Selected Countries</h2>
               <p>&quot;Click&quot; to delete</p>
             </div>
-            <img src="../../../public/img/activity.png" alt="" />
+            <img src="/img/activity.png" alt="" />
           </div>
           <form className={styles.form} onSubmit={handleSubmit}>
             <div

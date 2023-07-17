@@ -89,7 +89,7 @@ const SearchBar = ({onFilterChange}) => {
             resetFilters && filteredCountries.length >= 0 ? styles.hidden : ""
           }`}
         >
-          <img src="../../../public/img/recarga.png" alt="" />
+          <img src="/img/recarga.png" alt="" />
         </button>
         <input
           type="text"

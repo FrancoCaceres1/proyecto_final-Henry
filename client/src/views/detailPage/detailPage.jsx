@@ -29,7 +29,7 @@ const DetailPage = () => {
       <div className={styles.content}>
         <Header></Header>
         <div className={styles.titleContainer}>
-          <img src="../../../public/img/place.png" alt="" />
+          <img src="/img/place.png" alt="" />
           <h1>{countryDetail[0]?.name}</h1>
         </div>
         <div className={styles.navContainer}>

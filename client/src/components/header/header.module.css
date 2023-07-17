@@ -19,7 +19,7 @@
   box-shadow: -20px -20px 0 -10px rgba(0, 0, 0, 0.15) inset,
     -60px -20px 0 0 rgba(0, 0, 0, 0.1) inset,
     5px 5px 0 0 rgba(255, 255, 255, 0.2) inset;
-  background: url("../../../public/img/mapa.png") repeat-x;
+  background: url(/img/mapa.png) repeat-x;
   background-size: auto 100%;
   animation: rotate 15s infinite linear;
   position: absolute;

@@ -14,20 +14,20 @@ const NavBarSideBar = () => {
     <div className={styles.buttonContainer}>
       <Link to="/home">
         <button className={styles.homeButton} onClick={handleShowAllCountries}>
-          <img src="../../../public/img/home.png" alt="home button" />
+          <img src="/img/home.png" alt="home button" />
           <p>home</p>
         </button>
       </Link>
       <Link to="/activities">
         <button className={styles.activityButton}>
-          <img src="../../../public/img/caminata.png" alt="activities button" />
+          <img src="/img/caminata.png" alt="activities button" />
           <p>new activities</p>
         </button>
       </Link>
       <Link to="/ver">
         <button className={styles.showActivityButton}>
           <img
-            src="../../../public/img/lista.png"
+            src="/img/lista.png"
             alt="activities list button"
           />
           <p>activities list</p>
@@ -35,7 +35,7 @@ const NavBarSideBar = () => {
       </Link>
       <Link to="/">
         <button className={styles.logoutButton}>
-          <img src="../../../public/img/logout.png" alt="logout button" />
+          <img src="/img/logout.png" alt="logout button" />
           <p>logout</p>
         </button>
       </Link>

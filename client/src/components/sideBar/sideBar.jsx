@@ -32,13 +32,13 @@ const Sidebar = () => {
             <div className={styles.buttonContainer}>
               <a href="https://github.com/FrancoCaceres1" rel="noreferrer" target="_blank">
                 <button className={styles.gitButton}>
-                  <img src="../../../public/img/github.png" alt="github"/>
+                  <img src="/img/github.png" alt="github"/>
                   <p>github</p>
                 </button>
               </a>
               <a href="https://www.linkedin.com/in/franco-c%C3%A1ceres-2731a0273/" rel="noreferrer" target="_blank">
                 <button className={styles.linButton}>
-                  <img src="../../../public/img/linkedin.png" alt="linkedin"/>
+                  <img src="/img/linkedin.png" alt="linkedin"/>
                   <p>linkedin</p>
                 </button>
               </a>

@@ -47,7 +47,7 @@ const Card = ({ id, name, image, continent }) => {
             <h2 className={styles.title}>{name}</h2>
             <span className={styles.linea}></span>
             <div className={styles.nameContinent}>
-              <img src="../../../public/img/place.png" alt="" />
+              <img src="/img/place.png" alt="" />
               <h3>{continent}</h3>
             </div>
           </div>
