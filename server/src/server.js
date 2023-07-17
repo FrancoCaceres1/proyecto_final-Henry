@@ -8,7 +8,12 @@ const server = express();
 
 server.use(morgan("dev"));
 server.use(express.json());
-server.use(cors());
+server.use(cors({
+  origin: [
+    'https://pi-countries-m4vpvpmgc-francocaceres1.vercel.app',
+    'https://proyectofinal-henry-production.up.railway.app'
+  ]
+}));
 
 server.use('/countries', countriesRouter);
 server.use('/activities', activitiesRouter);
