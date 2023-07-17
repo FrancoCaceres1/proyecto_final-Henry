@@ -10,7 +10,7 @@ import * as actions from "./redux/actions";
 import axios from "axios";
 import "./App.css";
 
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "https://proyectofinal-henry-production.up.railway.app/";
 
 function App() {
 
