@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../Redux/actions";
+import * as actions from "../../redux/actions";
 import validation from "./validation";
 import Header from "../../components/header/header";
 import Sidebar from "../../components/sideBar/sideBar";
