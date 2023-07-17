@@ -3,7 +3,7 @@ import axios from "axios";
 export const getCountries = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/countries");
+      const { data } = await axios.get("/countries");
       if (data.length) {
         dispatch({ type: "GET_COUNTRIES", payload: data });
       }
@@ -16,7 +16,7 @@ export const getCountries = () => {
 export const getCountryDetail = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
+      const { data } = await axios.get(`/countries/${id}`);
 
       if (data.length) {
         return dispatch({
@@ -40,7 +40,7 @@ export const addActivity = (activities) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/activities",
+        "/activities",
         activities
       );
       return dispatch({ type: "ADD_ACTIVITIES", payload: data });
@@ -62,7 +62,7 @@ export const addActivity = (activities) => {
 export const getActivities = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/activities");
+      const { data } = await axios.get("/activities");
       return dispatch({ type: "GET_ACTIVITIES", payload: data });
       
     } catch (error) {
@@ -75,7 +75,7 @@ export const onSearch = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/countries?name=${name}`
+        `/countries?name=${name}`
       );
 
       if (data.length) {
@@ -103,7 +103,7 @@ export const deleteActivities = (id) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:3001/activities/${id}`
+        `/activities/${id}`
       );
 
       if (data === 1) {
@@ -142,7 +142,7 @@ export const filterOrder = (payload) => {
 export const fetchCountries = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/countries");
+      const { data } = await axios.get("/countries");
       if (data.length) {
         dispatch({ type: "GET_COUNTRIES", payload: data });
       }
@@ -155,7 +155,7 @@ export const fetchCountries = () => {
 export const fetchActivities = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/activities");
+      const { data } = await axios.get("/activities");
       if (data.length) {
         dispatch({ type: "GET_ACTIVITIES", payload: data });
       }

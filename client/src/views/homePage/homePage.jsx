@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
 import Card from "../../components/card/Card";
@@ -32,6 +32,27 @@ const HomePage = () => {
     dispatch(actions.fetchActivities());
   }, []);
 
+  const cardRef = useRef(null);
+  const paginatedRef = useRef(null);
+
+  const handleScroll = () => {
+    const cardRect = cardRef.current.getBoundingClientRect();
+    const paginatedRect = paginatedRef.current.getBoundingClientRect();
+
+    if (cardRect.top <= 0) {
+      paginatedRef.current.classList.add(styles.fixed);
+    } else {
+      paginatedRef.current.classList.remove(styles.fixed);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <Sidebar />
@@ -40,7 +61,7 @@ const HomePage = () => {
         <div>
           <Options onFilterChange={handleFilterChange}/>
         </div>
-        <div>
+        <div className={styles.paginatedContainer} ref={paginatedRef}>
           <Paginated
             countryPerPage={10}
             allCountries={allCountries}
@@ -49,7 +70,7 @@ const HomePage = () => {
           />
         </div>
         <div className={styles.fondo}>
-          <div className={styles.card}>
+          <div className={styles.card} ref={cardRef}>
             {currentCountry.length > 0 ? (
               currentCountry.map((coun) => (
                 <div className={styles.tarjet} key={coun.id}>

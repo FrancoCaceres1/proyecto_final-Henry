@@ -7,7 +7,10 @@ import DetailPage from "./views/detailPage/detailPage";
 import FormPage from "./views/formPage/formPage";
 import ActivitiesPage from "./views/activitiesPage/activitiesPage";
 import * as actions from "./redux/actions";
+import axios from "axios";
 import "./App.css";
+
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
 
