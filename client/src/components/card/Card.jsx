@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../Card/Card.module.css";
+import styles from "./card.module.css";
 
 const Card = ({ id, name, image, continent }) => {
   const [isHovered, setIsHovered] = useState(false);

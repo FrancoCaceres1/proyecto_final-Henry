@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import SearchBar from "../searchBar/SearchBar";
+import SearchBar from "../searchBar/searchBar";
 import styles from "./header.module.css";
 
 const Header = ({onFilterChange}) => {
