@@ -7,7 +7,7 @@ function Cards() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/countries") 
+      .get("/countries") 
       .then((response) => {
         setCountries(response.data); 
       })
