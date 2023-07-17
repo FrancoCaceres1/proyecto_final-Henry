@@ -150,3 +150,9 @@
   }
 }
 
+@media (max-width: 500px) {
+  .resetButton {
+    visibility: hidden;
+  }
+}
+
