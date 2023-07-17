@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./options.module.css";
 
-const Options = () => {
+const Options = ({ onFilterChange }) => {
   const dispatch = useDispatch();
   const [isOpenContinent, setIsOpenContinent] = useState(false);
   const [isOpenActivity, setIsOpenActivity] = useState(false);
@@ -16,6 +16,10 @@ const Options = () => {
   const [selectedContinent, setSelectedContinent] = useState("All");
   const [selectedActivity, setSelectedActivity] = useState("All");
   const [selectedOrder, setSelectedOrder] = useState("Any");
+
+  useEffect(() => {
+    dispatch(actions.resetPage());
+  }, [dispatch]);
 
   useEffect(() => {
     setSelectedContinent(initialState.selectedContinent);
@@ -34,6 +38,7 @@ const Options = () => {
       setSelectedContinent(event.target.value);
       dispatch(actions.filterCountryByContinent(event.target.value));
       setShowButtonText(true);
+      onFilterChange();
     }
   };
 
@@ -46,6 +51,7 @@ const Options = () => {
       setSelectedActivity(event.target.value);
       dispatch(actions.filterActivities(event.target.value));
       setShowButtonText(true);
+      onFilterChange();
     }
   };
 
@@ -57,6 +63,7 @@ const Options = () => {
     } else {
       setSelectedOrder(event.target.value);
       dispatch(actions.filterOrder(event.target.value));
+      onFilterChange();
     }
     dispatch(actions.filterOrder(event.target.value));
     setShowButtonText(true);
@@ -106,6 +113,10 @@ const Options = () => {
     };
   }, []);
 
+  useEffect(() => {
+    dispatch(actions.filterActivities(selectedActivity)); 
+  }, [dispatch, selectedActivity]);
+
   return (
     <div className={styles.optionsContainer}>
       <div className={styles.selectContainer}>
@@ -146,7 +157,7 @@ const Options = () => {
           >
             <option value="All">All Activities</option>
             <option value="Trekking">Trekking</option>
-            <option value="Caminata">Hike</option>
+            <option value="Hike">Hike</option>
             <option value="Bike Tour">Bike Tour</option>
             <option value="City Tour">City Tour</option>
             <option value="Gastronomic Circuit">Gastronomic Circuit</option>

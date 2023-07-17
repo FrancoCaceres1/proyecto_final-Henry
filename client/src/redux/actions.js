@@ -177,3 +177,9 @@ export const flipCard = (cardId) => {
     payload: cardId,
   };
 };
+
+export const resetPage = () => {
+  return {
+    type: "RESET_PAGE",
+  };
+};

@@ -6,6 +6,8 @@ export const initialState = {
   allActivitiesFilter: [],
   selectedContinent: "All",
   selectedActivity: "All",
+  selectedOrder: "Any",
+  selectedPopulation: "Any",
   searchError: null,
   flippedCards: [],
 };
@@ -76,66 +78,103 @@ const reducer = (state = initialState, action) => {
               (coun) => coun.continent === action.payload
             );
 
+      let allCountriesFilterByOrder = [...continentFiltered];
+
+      if (state.selectedOrder === "A") {
+        allCountriesFilterByOrder.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (state.selectedOrder === "D") {
+        allCountriesFilterByOrder.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (state.selectedOrder === "P") {
+        allCountriesFilterByOrder.sort((a, b) => a.population - b.population);
+      } else if (state.selectedOrder === "G") {
+        allCountriesFilterByOrder.sort((a, b) => b.population - a.population);
+      }
+
+      let allCountriesFiltered = [...allCountriesFilterByOrder];
+
+      if (state.selectedActivity !== "All") {
+        allCountriesFiltered = allCountriesFiltered.filter((country) => {
+          const countryActivities =
+            country.Activities && country.Activities.length > 0
+              ? country.Activities.map((activity) => activity.name)
+              : [];
+          return countryActivities.includes(state.selectedActivity);
+        });
+      }
+
       return {
         ...state,
         allActivitiesFilter: [],
-        allCountriesFilter: continentFiltered,
+        allCountriesFilter: allCountriesFiltered,
+        filteredByContinent: continentFiltered,
       };
     }
 
     case "FILTER_ACTIVITIES": {
-      const allCountriesFiltered = state.allCountries?.filter((country) => {
+      const selectedActivity = action.payload;
+
+      let allCountriesFiltered = [...state.allCountriesFilter];
+
+      if (state.filteredByContinent.length > 0) {
+        allCountriesFiltered = [...state.filteredByContinent];
+      }
+
+      allCountriesFiltered = allCountriesFiltered.filter((country) => {
         const countryActivities =
           country.Activities && country.Activities.length > 0
             ? country.Activities.map((activity) => activity.name)
-            : undefined;
-        const selectedActivity = action.payload;
+            : [];
         return (
           selectedActivity === "All" ||
-          countryActivities?.includes(selectedActivity)
+          countryActivities.includes(selectedActivity)
         );
-      });
-      const filteredActivities = state.allActivities?.filter((activity) => {
-        return action.payload === "All" || activity.name === action.payload;
       });
 
       return {
         ...state,
-        allCountriesFilter: allCountriesFiltered || [],
-        allActivitiesFilter: filteredActivities || [],
+        allCountriesFilter: allCountriesFiltered,
+        allActivitiesFilter: state.allActivities.filter(
+          (activity) => activity.name === selectedActivity
+        ),
+        selectedActivity: selectedActivity,
       };
     }
 
     case "FILTER_ORDER": {
       let allCountriesFilterByOrder;
 
+      if (state.filteredByContinent.length > 0) {
+        allCountriesFilterByOrder = [...state.filteredByContinent];
+      } else {
+        allCountriesFilterByOrder = [...state.allCountries];
+      }
+
       if (action.payload === "A") {
-        allCountriesFilterByOrder = state.allCountriesFilter.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        allCountriesFilterByOrder.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (action.payload === "D") {
+        allCountriesFilterByOrder.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (action.payload === "P") {
+        allCountriesFilterByOrder.sort((a, b) => a.population - b.population);
+      } else if (action.payload === "G") {
+        allCountriesFilterByOrder.sort((a, b) => b.population - a.population);
       }
 
-      if (action.payload === "D") {
-        allCountriesFilterByOrder = state.allCountriesFilter.sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
-      }
+      let allCountriesFiltered = [...allCountriesFilterByOrder];
 
-      if (action.payload === "P") {
-        allCountriesFilterByOrder = state.allCountriesFilter.sort(
-          (a, b) => a.population - b.population
-        );
-      }
-
-      if (action.payload === "G") {
-        allCountriesFilterByOrder = state.allCountriesFilter.sort(
-          (a, b) => b.population - a.population
-        );
+      if (state.selectedActivity !== "All") {
+        allCountriesFiltered = allCountriesFiltered.filter((country) => {
+          const countryActivities =
+            country.Activities && country.Activities.length > 0
+              ? country.Activities.map((activity) => activity.name)
+              : [];
+          return countryActivities.includes(state.selectedActivity);
+        });
       }
 
       return {
         ...state,
-        allCountriesFilter: [...allCountriesFilterByOrder],
+        allCountriesFilter: allCountriesFiltered,
+        selectedOrder: action.payload,
       };
     }
 
@@ -188,6 +227,12 @@ const reducer = (state = initialState, action) => {
         flippedCards,
       };
     }
+
+    case "RESET_PAGE":
+      return {
+        ...state,
+        currentPage: 1,
+      };
 
     default:
       return state;

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import style from "./searchBar.module.css";
+import styles from "./searchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
 
-const SearchBar = () => {
+const SearchBar = ({onFilterChange}) => {
   const allCountries = useSelector((state) => state.allCountries);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -38,6 +38,7 @@ const SearchBar = () => {
       dispatch(actions.onSearch(name));
       if (resultsRef.current) {
         resultsRef.current.style.display = "none";
+        onFilterChange();
       }
       setResetFilters(false);
     }
@@ -46,6 +47,7 @@ const SearchBar = () => {
   const handleSubmit = () => {
     dispatch(actions.onSearch(name));
     setResetFilters(false);
+    onFilterChange();
   };
 
   useEffect(() => {
@@ -59,6 +61,7 @@ const SearchBar = () => {
     resultsRef.current.style.display = "none";
     setListVisible(false);
     setResetFilters(false);
+    onFilterChange();
   };
 
   const handleBlur = () => {
@@ -78,12 +81,12 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={style.searchContainer}>
-      <div className={style.searchInputContainer}>
+    <div className={styles.searchContainer}>
+      <div className={styles.searchInputContainer}>
         <button
           onClick={handleShowAllCountries}
-          className={`${style.showAllButton} ${
-            resetFilters && filteredCountries.length >= 0 ? style.hidden : ""
+          className={`${styles.showAllButton} ${
+            resetFilters && filteredCountries.length >= 0 ? styles.hidden : ""
           }`}
         >
           <img src="../../../public/img/recarga.png" alt="" />
@@ -98,19 +101,19 @@ const SearchBar = () => {
           }}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={style.searchInput}
+          className={styles.searchInput}
           onKeyPress={handleKeyDown}
           autoComplete="off"
         />
         <button
           type="button"
-          className={style.searchIcon}
+          className={styles.searchIcon}
           onClick={() => handleSubmit(filteredCountries[0])}
           disabled={filteredCountries.length !== 1}
         ></button>
       </div>
       {isListVisible && filteredCountries.length > 0 && (
-        <ul className={style.searchResults} ref={resultsRef}>
+        <ul className={styles.searchResults} ref={resultsRef}>
           {filteredCountries.slice(0, 5).map((country) => (
             <li key={country.name} onClick={() => handleSelectCountry(country)}>
               {country.name}
@@ -119,7 +122,7 @@ const SearchBar = () => {
         </ul>
       )}
       {errors && name.length > 0 && (
-        <p className={style.error}>Not founded</p>
+        <p className={styles.error}>Not founded</p>
       )}
     </div>
   );

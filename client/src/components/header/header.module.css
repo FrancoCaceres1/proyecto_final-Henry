@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
 .header {
+  position: relative;
   width: 100%;
   height: 83px;
   display: flex;
@@ -52,4 +53,41 @@
   width: 30%;
   gap: 15px;
   margin: 0 auto;
+}
+
+/*? Mediaqueries */
+
+@media (max-width: 948px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .search {
+    width: 50%;
+  }
+}
+
+@media (max-width: 889px) {
+  .logo {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 690px) {
+  .search {
+    width: 70%;
+  }
+}
+
+@media (max-width: 630px) {
+  .earth {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 457px) {
+  .earth {
+    visibility: hidden;
+  }
 }

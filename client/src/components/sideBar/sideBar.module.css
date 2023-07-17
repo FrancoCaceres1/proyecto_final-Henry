@@ -86,7 +86,7 @@
   justify-content: start;
   width: 100%;
   padding: 10px 0px 10px 10px;
-  gap: 10px;
+  gap: 13px;
 }
 
 .closeButtonContainer p {
@@ -139,4 +139,105 @@
 
 .closeButton span {
   top: 2px;
+}
+
+.line {
+  display: flex;
+  margin: 50px 0;
+  background-color: #000000;
+  width: 200px;
+  height: 1px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  font-size: 12px;
+}
+
+.buttonContainer a {
+  width: 100%;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gitButton {
+  width: 90%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.gitButton img {
+  width: 55px;
+  height: 55px;
+}
+
+.gitButton:focus{
+  outline: #414141;
+}
+
+.gitButton:hover {
+  background-color: #e2dfdfa9;
+  border: none;
+}
+
+.linButton {
+  width: 90%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.linButton img {
+  width: 50px;
+  height: 50px;
+}
+
+.linButton:focus{
+  outline: #414141;
+}
+
+.linButton:hover {
+  background-color: #e2dfdfa9;
+  border: none;
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    height: 75px;
+    top: 92%;
+    z-index: 3;
+    order: 5;
+  }
+
+  .content {
+    margin-left: 0px;
+  }
+
+  .toggleButton {
+    visibility: hidden;
+    position: absolute;
+  }
 }

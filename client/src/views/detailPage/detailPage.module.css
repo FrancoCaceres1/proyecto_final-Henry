@@ -185,3 +185,80 @@
   color: #f1f1f1;
   background-color: #081e22;
 }
+
+@media (max-width: 900px) {
+  .titleContainer h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 760px) {
+  .content {
+    margin-left: 0px;
+  }
+
+  .titleContainer h1 {
+    font-size: 25px;
+  }
+
+  .titleContainer img {
+    width: 35px;
+  }
+
+  .boxContainer {
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 675px) {
+  .box {
+    width: 400px;
+    height: 450px;
+    gap: 50px;
+  }
+
+  .imgContainer {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .box2 {
+    width: 400px;
+    height: 450px;
+  }
+
+  .textActivities {
+    gap: 13px;
+    font-size: 20px;
+  }
+
+  .activities {
+    font-size: 13px;
+  }
+
+  .seeButton {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .text {
+    width: 350px;
+    font-size: 15px;
+  }
+
+  .text span {
+    padding: 5px 10px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 586px) {
+  .titleContainer h1 {
+    font-size: 20px;
+  }
+
+  .titleContainer img {
+    width: 35px;
+  }
+}

@@ -109,3 +109,37 @@
   height: 20px;
   margin-bottom: 3px;
 }
+
+/*? Mediaqueries */
+
+@media (max-width: 690px) {
+  .container {
+    width: 225px;
+    height: 325px;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+  }
+
+  .imgContainer {
+    margin-top: 13px;
+    width: 180px;
+    height: 130px;
+  }
+
+  .dataContainer {
+    width: 180px;
+    height: 110px;
+  }
+
+  .nameContinent h3 {
+    font-size: 13px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+}

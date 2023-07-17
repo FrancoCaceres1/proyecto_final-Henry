@@ -1,7 +1,7 @@
 import { deleteActivities, flipCard } from "../../redux/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import style from "./activityCards.module.css";
+import styles from "./activityCards.module.css";
 
 const ActivityCards = ({ activities }) => {
   const dispatch = useDispatch();
@@ -26,66 +26,75 @@ const ActivityCards = ({ activities }) => {
   };
 
   return (
-    <div className={style.container}>
-      {activities.map((activity) => (
-        <div
-          key={activity.id}
-          className={`${style.card} ${
-            flippedCards.includes(activity.id) ? style.flipped : ""
-          }`}
-        >
-          <div className={style.cardContent}>
-            <div className={style.front}>
-              <div className={style.detailContainer}>
-                <h3 className={style.title}>{activity.name}</h3>
-                <div className={style.details}>
-                  <p>
-                    Difficulty: <span>{activity.difficulty}</span>
-                  </p>
-                  <p>
-                    Duration: <span>{activity.duration} hs</span>
-                  </p>
-                  <p>
-                    Season: <span>{activity.season}</span>
-                  </p>
+    <div className={styles.container}>
+      {activities.length > 0 ? (
+        activities.map((activity) => (
+          <div
+            key={activity.id}
+            className={`${styles.card} ${
+              flippedCards.includes(activity.id) ? styles.flipped : ""
+            }`}
+          >
+            <div className={styles.cardContent}>
+              <div className={styles.front}>
+                <div className={styles.detailContainer}>
+                  <h3 className={styles.title}>{activity.name}</h3>
+                  <div className={styles.details}>
+                    <p>
+                      Difficulty: <span>{activity.difficulty}</span>
+                    </p>
+                    <p>
+                      Duration: <span>{activity.duration} hs</span>
+                    </p>
+                    <p>
+                      Season: <span>{activity.season}</span>
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.buttonContainer}>
+                  <button
+                    className={styles.flipButton}
+                    onClick={() => handleFlip(activity.id)}
+                  >
+                    Associated countries
+                  </button>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDelete(activity.id)}
+                  >
+                    <img src="../../../public/img/trash.png" alt="" />
+                  </button>
                 </div>
               </div>
-              <div className={style.buttonContainer}>
-                <button
-                  className={style.flipButton}
-                  onClick={() => handleFlip(activity.id)}
-                >
-                  Associated countries
-                </button>
-                <button
-                  className={style.deleteButton}
-                  onClick={() => handleDelete(activity.id)}
-                >
-                  <img src="../../../public/img/trash.png" alt="" />
-                </button>
-              </div>
-            </div>
-            <div className={style.back}>
-              <div className={style.countriesCountainer}>
-                <h4 className={style.subtitle}>Associated countries</h4>
-                <ul className={style.countryList}>
-                  {activity.Countries.map((country, index) => (
-                    <li key={index} className={style.countryItem}>
-                      <p>{country.name}</p>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className={style.flipButtonBack}
-                  onClick={() => handleFlip(activity.id)}
-                >
-                  &#9664;
-                </button>
+              <div className={styles.back}>
+                <div className={styles.countriesCountainer}>
+                  <h4 className={styles.subtitle}>Associated countries</h4>
+                  <ul className={styles.countryList}>
+                    {activity.Countries.map((country, index) => (
+                      <li key={index} className={styles.countryItem}>
+                        <p>{country.name}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className={styles.flipButtonBack}
+                    onClick={() => handleFlip(activity.id)}
+                  >
+                    &#9664;
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        ))
+      ) : (
+        <div className={styles.error}>
+          <h2>No activities were found</h2>
+          <div className={styles.errorImage}>
+            <img src="../../../public/img/noFoundActivity.png" alt="" />
+          </div>
         </div>
-      ))}
+      )}
     </div>
   );
 };

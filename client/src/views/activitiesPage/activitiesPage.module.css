@@ -65,3 +65,13 @@
 .cardsContent {
   padding: 50px 10px;
 }
+
+@media (max-width: 760px) {
+  .content {
+    margin-left: 0px;
+  }
+
+  .cardsContent {
+    padding-bottom: 100px;
+  }
+}

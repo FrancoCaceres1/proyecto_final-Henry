@@ -14,6 +14,7 @@
 }
 
 .selectContainer {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,3 +99,54 @@
   -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
 }
+
+/*? Mediaqueries */
+
+@media (max-width: 1094px) {
+  .resetButton {
+    position: absolute;
+    top: 22px;
+    right: 12%;
+  }
+}
+
+@media (max-width: 948px) {
+  .resetButton {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 864px) {
+  .selectContainer {
+    gap: 10px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 690px) {
+  .selectContainer {
+    flex-direction: column;
+  }
+
+  .optionsContainer {
+    height: 120px;
+  }
+
+  .select {
+    font-size: 13px;
+  }
+
+  .select option {
+    background-color: rgb(46, 79, 82);
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+  }
+
+  .resetButton {
+    visibility: visible;
+    top: 125px;
+    right: 4.5%;
+    margin: 0;
+  }
+}
+

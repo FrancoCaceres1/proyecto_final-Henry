@@ -53,7 +53,7 @@
   border: none;
   border-radius: 4px;
   background-color: #f4f4f4;
-  width: 28.3%;
+  width: 29%;
   -webkit-box-shadow: 1px 1px 2px 0px rgba(102, 102, 102, 1);
   -moz-box-shadow: 1px 1px 2px 0px rgba(102, 102, 102, 1);
   box-shadow: 1px 1px 2px 0px rgba(102, 102, 102, 1);
@@ -104,4 +104,24 @@
   width: 25px;
   height: 23px;
   transform: rotate(290deg);
+}
+
+/*? Mediaqueries */
+
+@media (max-width: 948px) {
+  .searchResults {
+    width: 47%;
+  }
+}
+
+@media (max-width: 690px) {
+  .searchResults {
+    width: 64.5%;
+  }
+}
+
+@media (max-width: 453px) {
+  .searchResults {
+    width: 60.5%;
+  }
 }

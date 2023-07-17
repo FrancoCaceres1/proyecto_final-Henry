@@ -128,3 +128,70 @@
   background-color: #e2dfdfa9;
   border: none;
 }
+
+@media (max-width: 760px) {
+  .buttonContainer {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .homeButton {
+    width: 90%;
+    height: 70px;
+    gap: 9px;
+  }
+
+  .homeButton img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .homeButton p {
+    font-size: 12px;
+  }
+
+  .activityButton {
+    width: 90%;
+    height: 70px;
+    gap: 7px;
+  }
+
+  .activityButton img {
+    width: 20px;
+    height: 25px;
+  }
+
+  .activityButton p {
+    font-size: 12px;
+  }
+
+  .logoutButton {
+    width: 90%;
+    height: 70px;
+    gap: 9px;
+  }
+
+  .logoutButton img {
+    width: 25px;
+    height: 20px;
+  }
+
+  .logoutButton p {
+    font-size: 12px;
+  }
+
+  .showActivityButton {
+    width: 90%;
+    height: 70px;
+    gap: 7px;
+  }
+
+  .showActivityButton img {
+    width: 20px;
+    height: 25px;
+  }
+
+  .showActivityButton p {
+    font-size: 12px;
+  }
+}

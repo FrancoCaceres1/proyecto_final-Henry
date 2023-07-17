@@ -23,7 +23,7 @@
 .numbersContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -96,4 +96,22 @@
 .pagingButton:hover {
   background-color: rgb(54, 54, 54);
   color: white;
+}
+
+/*? Mediaqueries */
+
+@media (max-width: 948px) {
+  .hidden {
+    display: none;
+  }
+
+  .ul {
+    width: 50%;
+  }
+}
+
+@media (max-width: 536px) {
+  .ul {
+    width: 80%;
+  }
 }

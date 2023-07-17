@@ -6,7 +6,7 @@ import Options from "../../components/options/options";
 import Paginated from "../../components/paginated/paginated";
 import Sidebar from "../../components/sideBar/sideBar";
 import Header from "../../components/header/header";
-import style from "./homePage.module.css";
+import styles from "./homePage.module.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -23,18 +23,22 @@ const HomePage = () => {
     setCurrentPage(() => pageNumber);
   };
 
+  const handleFilterChange = () => {
+    setCurrentPage(1);
+  };
+
   useEffect(() => {
     dispatch(actions.fetchCountries());
     dispatch(actions.fetchActivities());
   }, []);
 
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       <Sidebar />
-      <div className={style.content}>
-          <Header></Header>
+      <div className={styles.content}>
+          <Header onFilterChange={handleFilterChange}></Header>
         <div>
-          <Options />
+          <Options onFilterChange={handleFilterChange}/>
         </div>
         <div>
           <Paginated
@@ -44,11 +48,11 @@ const HomePage = () => {
             currentPage={currentPage}
           />
         </div>
-        <div className={style.fondo}>
-          <div className={style.card}>
+        <div className={styles.fondo}>
+          <div className={styles.card}>
             {currentCountry.length > 0 ? (
               currentCountry.map((coun) => (
-                <div className={style.tarjet} key={coun.id}>
+                <div className={styles.tarjet} key={coun.id}>
                   <Card
                     name={coun.name}
                     image={coun.image}
@@ -58,9 +62,9 @@ const HomePage = () => {
                 </div>
               ))
             ) : (
-              <div className={style.error}>
+              <div className={styles.error}>
                 <h2>No countries were found</h2>
-                <div className={style.errorImage}>
+                <div className={styles.errorImage}>
                   <img src="../../../public/img/noFound.png" alt="" />
                 </div>
               </div>
