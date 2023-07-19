@@ -164,7 +164,6 @@ const Options = ({ onFilterChange }) => {
             <option value="Rapel">Rapel</option>
             <option value="Shopping">Shopping</option>
             <option value="Museum Circuit">Museum Circuit</option>
-            <option value="Free Choice">Free Choice</option>
           </select>
           <div className={styles.selectArrow}></div>
         </div>

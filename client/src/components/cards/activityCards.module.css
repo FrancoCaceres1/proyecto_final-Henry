@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
 .container {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -243,6 +244,61 @@
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
+.confirmationDialog {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: linear-gradient(45deg, #ffffff, #f6f4ff);
+  border: 1px solid rgb(46, 79, 82);
+  border-radius: 15px;
+  height: 350px;
+  width: 450px;
+  z-index: 1;
+  margin-top: 25px;
+}
+
+.confirmationDialog p {
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  padding: 0 30px;
+  font-weight: bold;
+  color: #e60101;
+}
+
+.confirmationButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+}
+
+.confirmationButtons button {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  padding: 10px 15px;
+  width: 100px;
+  border-radius: 10px;
+  border: solid 1px rgb(46, 79, 82);
+  cursor: pointer;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+.yesButton:hover {
+  transform: scale(1.1);
+  background-color: rgb(201, 26, 26);
+  color: #f4f4f4;
+}
+
+.noButton:hover {
+  transform: scale(1.1);
+  background-color: rgb(46, 79, 82);
+  color: #f4f4f4;
+}
+
 /*? Mediaqueries */
 
 @media (max-width: 690px) {
@@ -252,7 +308,7 @@
   }
 
   .title {
-    padding: 5px;
+    padding: 0px;
     font-size: 20px;
   }
   
@@ -310,5 +366,15 @@
   .error h2 {
     width: 300px;
     padding: 40px;
+  }
+}
+
+@media (max-width: 630px) {
+  .confirmationDialog {
+    width: 300px;
+  }
+
+  .confirmationDialog p {
+    font-size: 25px;
   }
 }

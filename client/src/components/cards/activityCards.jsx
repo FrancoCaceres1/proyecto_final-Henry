@@ -1,11 +1,16 @@
 import { deleteActivities, flipCard } from "../../redux/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./activityCards.module.css";
 
 const ActivityCards = ({ activities }) => {
   const dispatch = useDispatch();
   const flippedCards = useSelector((state) => state.flippedCards);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [activityToDelete, setActivityToDelete] = useState({
+    id: "",
+    name: "",
+  });
 
   useEffect(() => {
     return () => {
@@ -17,8 +22,22 @@ const ActivityCards = ({ activities }) => {
     };
   }, [activities, flippedCards, dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(deleteActivities(id));
+  const handleDelete = (id, name) => {
+    setActivityToDelete({ id: id, name: name });
+    console.log(activityToDelete);
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (activityToDelete) {
+      dispatch(deleteActivities(activityToDelete.id));
+    }
+
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
   };
 
   const handleFlip = (cardId) => {
@@ -60,7 +79,7 @@ const ActivityCards = ({ activities }) => {
                   </button>
                   <button
                     className={styles.deleteButton}
-                    onClick={() => handleDelete(activity.id)}
+                    onClick={() => handleDelete(activity.id, activity.name)}
                   >
                     <img src="/img/trash.png" alt="" />
                   </button>
@@ -92,6 +111,17 @@ const ActivityCards = ({ activities }) => {
           <h2>No activities were found</h2>
           <div className={styles.errorImage}>
             <img src="/img/noFoundActivity.png" alt="" />
+          </div>
+        </div>
+      )}
+      {showDeleteConfirmation && (
+        <div className={styles.confirmationDialog}>
+          <p>
+            Are you sure you want to delete the {activityToDelete.name} activity?
+          </p>
+          <div className={styles.confirmationButtons}>
+            <button onClick={handleConfirmDelete} className={styles.yesButton}>Yes</button>
+            <button onClick={handleCancelDelete} className={styles.noButton}>No</button>
           </div>
         </div>
       )}

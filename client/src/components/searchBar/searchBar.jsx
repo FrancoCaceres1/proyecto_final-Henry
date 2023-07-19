@@ -34,7 +34,7 @@ const SearchBar = ({onFilterChange}) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter" && filteredCountries.length === 1) {
+    if (event.key === "Enter") {
       dispatch(actions.onSearch(name));
       if (resultsRef.current) {
         resultsRef.current.style.display = "none";
@@ -109,7 +109,6 @@ const SearchBar = ({onFilterChange}) => {
           type="button"
           className={styles.searchIcon}
           onClick={() => handleSubmit(filteredCountries[0])}
-          disabled={filteredCountries.length !== 1}
         ></button>
       </div>
       {isListVisible && filteredCountries.length > 0 && (

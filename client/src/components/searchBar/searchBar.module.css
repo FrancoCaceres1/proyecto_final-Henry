@@ -85,7 +85,7 @@
 
 .showAllButton {
   position: absolute;
-  left: 34%;
+  left: 31%;
   width: 35px;
   height: 35px;
   border: none;
@@ -112,11 +112,19 @@
   .searchResults {
     width: 47%;
   }
+
+  .showAllButton {
+    left: 20%;
+  }
 }
 
 @media (max-width: 690px) {
   .searchResults {
     width: 64.5%;
+  }
+
+  .showAllButton {
+    left: 8%;
   }
 }
 
