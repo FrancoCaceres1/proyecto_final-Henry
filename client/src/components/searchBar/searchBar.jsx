@@ -16,6 +16,7 @@ const SearchBar = ({onFilterChange}) => {
   const handleShowAllCountries = () => {
     dispatch(actions.resetFilters());
     setResetFilters(true);
+    setName("");
   };
 
   const handleChange = (event) => {

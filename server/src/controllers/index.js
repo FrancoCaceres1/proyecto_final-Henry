@@ -23,7 +23,7 @@ const getCountryById = async (id) => {
     include: [
       {
         model: Activity,
-        attributes: ["id","name", "difficulty", "duration", "season"],
+        attributes: ["id", "name", "difficulty", "duration", "season"],
         through: {
           attributes: [],
         },
@@ -68,8 +68,8 @@ const postActivities = async (name, difficulty, duration, season, pais) => {
   return activity;
 };
 
-const getAllActivities = async () =>
-  await Activity.findAll({
+const getAllActivities = async () => {
+  return await Activity.findAll({
     include: {
       model: Country,
       attributes: ["name"],
@@ -78,6 +78,7 @@ const getAllActivities = async () =>
       },
     },
   });
+};
 
 const deleteActivities = async (id) =>
   await Activity.destroy({ where: { id } });

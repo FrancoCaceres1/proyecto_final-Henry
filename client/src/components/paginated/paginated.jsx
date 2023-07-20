@@ -9,6 +9,7 @@ const Paginated = ({
 }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
   useEffect(() => {
     const totalPagesCount = Math.ceil(allCountries.length / countryPerPage);
     setTotalPages(totalPagesCount);
@@ -66,7 +67,7 @@ const Paginated = ({
                     onClick={() => paginated(number)}
                     className={`${styles.paging} ${
                       isHidden ? styles.hidden : ""
-                    }`}
+                    }${currentPage === number ? styles.pagingActive : ""}`}
                   >
                     {number}
                   </button>

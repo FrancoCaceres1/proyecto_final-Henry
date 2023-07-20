@@ -30,12 +30,6 @@ export const getCountryDetail = (id) => {
   };
 };
 
-export const cleanDetail = () => {
-  return {
-    type: "CLEAN_DETAIL",
-  };
-};
-
 export const addActivity = (activities) => {
   return async (dispatch) => {
     try {
@@ -64,7 +58,6 @@ export const getActivities = () => {
     try {
       const { data } = await axios.get("/activities");
       return dispatch({ type: "GET_ACTIVITIES", payload: data });
-      
     } catch (error) {
       alert("Error: " + error.response.data.error);
     }
@@ -90,7 +83,7 @@ export const onSearch = (name) => {
         });
       }
     } catch (error) {
-      const errorMessage = "Error: ese pais no existe";
+      const errorMessage = "Error: This Country doesn't exist";
       dispatch({
         type: "SEARCH_ERROR",
         payload: errorMessage,
@@ -136,32 +129,6 @@ export const filterOrder = (payload) => {
   return {
     type: "FILTER_ORDER",
     payload,
-  };
-};
-
-export const fetchCountries = () => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get("/countries");
-      if (data.length) {
-        dispatch({ type: "GET_COUNTRIES", payload: data });
-      }
-    } catch (error) {
-      alert("Error: " + error.response.data.error);
-    }
-  };
-};
-
-export const fetchActivities = () => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get("/activities");
-      if (data.length) {
-        dispatch({ type: "GET_ACTIVITIES", payload: data });
-      }
-    } catch (error) {
-      alert("Error: " + error.response.data.error);
-    }
   };
 };
 

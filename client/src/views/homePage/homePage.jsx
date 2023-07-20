@@ -28,8 +28,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    dispatch(actions.fetchCountries());
-    dispatch(actions.fetchActivities());
+    dispatch(actions.getCountries());
+    dispatch(actions.getActivities());
   }, []);
 
   const cardRef = useRef(null);
@@ -37,7 +37,6 @@ const HomePage = () => {
 
   const handleScroll = () => {
     const cardRect = cardRef.current.getBoundingClientRect();
-    const paginatedRect = paginatedRef.current.getBoundingClientRect();
 
     if (cardRect.top <= 0) {
       paginatedRef.current.classList.add(styles.fixed);

@@ -5,7 +5,7 @@ require("dotenv").config();
 const { PORT } = process.env;
 
 conn
-  .sync({ force: true })
+  .sync({ force: false })
   .then(async () => {
     server.listen(PORT, async () => {
       const dbCountries = await Country.findAll();

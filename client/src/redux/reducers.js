@@ -4,10 +4,8 @@ export const initialState = {
   countryDetail: [],
   allActivities: [],
   allActivitiesFilter: [],
-  selectedContinent: "All",
   selectedActivity: "All",
   selectedOrder: "Any",
-  selectedPopulation: "Any",
   searchError: null,
   flippedCards: [],
 };
@@ -32,12 +30,6 @@ const reducer = (state = initialState, action) => {
         countryDetail: action.payload,
       };
 
-    case "CLEAN_DETAIL":
-      return {
-        ...state,
-        countryDetail: [],
-      };
-
     case "ADD_ACTIVITIES": {
       const allActivities = action.payload;
       const allActivitiesFilter = action.payload;
@@ -54,6 +46,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allActivities: action.payload,
+        allActivitiesFilter: action.payload,
       };
 
     case "SEARCH_COUNTRIES":
@@ -187,27 +180,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         allActivities: updatedActivities,
         allActivitiesFilter: updatedActivities,
-      };
-    }
-
-    case "FETCH_ACTIVITIES": {
-      console.log(action.payload);
-      return {
-        ...state,
-        allActivities: action.payload,
-        allActivitiesFilter: action.payload,
-      };
-    }
-
-    case "FETCH_COUNTRIES": {
-      const allCountries = action.payload;
-      const allCountriesFilter = action.payload;
-
-      return {
-        ...state,
-        allCountries,
-        allCountriesFilter,
-        allActivitiesFilter: [],
       };
     }
 
