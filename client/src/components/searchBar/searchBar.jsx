@@ -110,6 +110,7 @@ const SearchBar = ({onFilterChange}) => {
           type="button"
           className={styles.searchIcon}
           onClick={() => handleSubmit(filteredCountries[0])}
+          disabled={!name}
         ></button>
       </div>
       {isListVisible && filteredCountries.length > 0 && (

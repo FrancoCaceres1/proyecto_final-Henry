@@ -24,7 +24,6 @@ const ActivityCards = ({ activities }) => {
 
   const handleDelete = (id, name) => {
     setActivityToDelete({ id: id, name: name });
-    console.log(activityToDelete);
     setShowDeleteConfirmation(true);
   };
 

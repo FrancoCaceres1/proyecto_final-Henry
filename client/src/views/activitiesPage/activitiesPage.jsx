@@ -6,7 +6,7 @@ import styles from "./activitiesPage.module.css";
 
 const ActivitiesPage = () => {
   const activities = useSelector((state) => state.allActivities);
-
+  
   return (
     <div className={styles.container}>
       <Sidebar />
@@ -14,6 +14,11 @@ const ActivitiesPage = () => {
         <Header></Header>
         <div className={styles.titleContainer}>
           <h1>Activities</h1>
+        </div>
+        <div>
+          <button>
+            Paises con 3 o 5 actividades 
+          </button>
         </div>
         <div className={styles.navContainer}>
           <button onClick={() => window.history.back()}>&#9664; Back</button>
